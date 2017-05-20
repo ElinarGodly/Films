@@ -1,0 +1,23 @@
+body{
+    //background-color: cornflowerblue;
+    font-family: Arial;
+    font-size: 12px;
+}
+table{ 
+    border:hidden;
+    height: 100px;
+    width: 1000px;
+}
+th,td{
+    border: 2px solid;
+    width: 20%;
+    text-align: center;
+}
+[id*='DropDownList'] {
+    width: 200px;
+}
+
+.ActorName {
+    background-color: red;
+}
+
