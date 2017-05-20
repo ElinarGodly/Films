@@ -2,12 +2,12 @@
 using System;
 using System.IO;
 using System.Linq;
-using csvMovies = ApplicationVariables.ApplicationVariables.DataIDs.CsvItems_Movies;
+using csvMovies = ApplicationVariables.ApplicationVariables.DataIDs.Items_Movies;
 using mcl = MovieClassLayer.MovieClasses;
 
 namespace MovieDataLayer
 {
-    public class MovieDataLayer : IDisposable
+    public class CSVData : IDisposable
     {
         public void Dispose()
         {
@@ -23,7 +23,7 @@ namespace MovieDataLayer
             // free native resources if there are any.
         }
 
-        //--------------------------------------------------------------------- CSV
+
         public mcl.Films GetCsvData(string CsvPath)
         {
             mcl.Films films = new mcl.Films();
@@ -99,4 +99,5 @@ namespace MovieDataLayer
             return film;
         }
     }
+
 }

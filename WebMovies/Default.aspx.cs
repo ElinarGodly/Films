@@ -70,17 +70,21 @@ namespace WebMovies
         {
             mcl.Films films = new mcl.Films();
 
-            if ((cache.UseCache) && (Cache[cache.FilmCacheName] != null))
+            //if ((cache.UseCache) && (Cache[cache.FilmCacheName] != null))
+            //{
+            //    films = Cache[cache.FilmCacheName] as mcl.Films;
+            //}
+            //else
+            //{
+            //    using (mbl bl1 = new mbl())
+            //    {
+            //        films = bl1.GetFilms(av.CsvPaths.MoviesCSV);
+            //        if (cache.UseCache) Cache[cache.FilmCacheName] = films;
+            //    }
+            //}
+            using (mbl bl1 = new mbl())
             {
-                films = Cache[cache.FilmCacheName] as mcl.Films;
-            }
-            else
-            {
-                using (mbl bl1 = new mbl())
-                {
-                    films = bl1.GetFilms(av.CsvPaths.MoviesCSV);
-                    if (cache.UseCache) Cache[cache.FilmCacheName] = films;
-                }
+                films = bl1.GetFilms(av.CsvPaths.MoviesCSV);
             }
 
             return films;
@@ -176,7 +180,10 @@ namespace WebMovies
             TableCell cell = new TableCell();
             
             if(linkValues != null)
+            {
                 cell.Controls.Add(CreateHyperLink(avt.HyperLinkTemplate, linkValues));
+            }
+                
             else
                 cell.Text = filmText;
             
@@ -189,6 +196,7 @@ namespace WebMovies
             
             link.NavigateUrl = String.Format(template, values[0], values[1]);
             link.Text = values[2];
+            link.Target = avt.newWindow;
 
             return link;
         }

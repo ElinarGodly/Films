@@ -84,7 +84,6 @@
   <ItemGroup>
     <Content Include="TestData.csv" />
     <Content Include="ExtendedTestData.csv" />
-    <Content Include="SQLtestData.mwb" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

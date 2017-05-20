@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using mcl = MovieClassLayer.MovieClasses;
-using mdl = MovieDataLayer.MovieDataLayer;
+using csvD = MovieDataLayer.CSVData;
+using sqlD = MovieDataLayer.SQLData;
 
 namespace MovieBusinessLayer
 {
@@ -24,9 +25,9 @@ namespace MovieBusinessLayer
         //--------------------------------------------------------------------- FILMS
         public mcl.Films GetFilms(string csvPath)
         {
-            using (mdl dl1 = new mdl())
+            using (sqlD dl1 = new sqlD())
             {
-                return dl1.GetCsvData(csvPath);
+                return dl1.Select();
             }
             //-- TODO: raise error if needed
         }
