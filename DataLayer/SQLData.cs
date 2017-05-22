@@ -24,7 +24,6 @@ namespace MovieDataLayer
             mcl.Films films = new mcl.Films();
             DataTable table = getFilmsTable();
             films = dataTableToFilms(table);
-
             return films;
         }
 

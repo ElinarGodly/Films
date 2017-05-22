@@ -68,21 +68,17 @@ namespace WebMovies
         {
             mcl.Films films = new mcl.Films();
 
-            //if ((cache.UseCache) && (Cache[cache.FilmCacheName] != null))
-            //{
-            //    films = Cache[cache.FilmCacheName] as mcl.Films;
-            //}
-            //else
-            //{
-            //    using (mbl bl1 = new mbl())
-            //    {
-            //        films = bl1.GetFilms(av.CsvPaths.MoviesCSV);
-            //        if (cache.UseCache) Cache[cache.FilmCacheName] = films;
-            //    }
-            //}
-            using (mbl bl1 = new mbl())
+            if ((cache.UseCache) && (Cache[cache.FilmCacheName] != null))
             {
-                films = bl1.GetFilms(av.CsvPaths.MoviesCSV);
+                films = Cache[cache.FilmCacheName] as mcl.Films;
+            }
+            else
+            {
+                using (mbl bl1 = new mbl())
+                {
+                    films = bl1.GetFilms(av.SystemSettings.DataAccessPoint.CSV);
+                    if (cache.UseCache) Cache[cache.FilmCacheName] = films;
+                }
             }
 
             return films;

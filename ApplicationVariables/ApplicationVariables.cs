@@ -24,13 +24,25 @@ namespace ApplicationVariables
                 public static string FilmCacheName = @"Cache_Film";
             }
 
+            public struct DataAccessPoint
+            {
+                public const int CSV = 0;
+                public const int MySQL = 1;
+            }
+
             public struct SQLconnection
             {
                 public static string server = "localhost";
                 public static string database = "filmdb";
                 public static string uid = "root";
                 public static string password = "";
-                public static string connectionString = "SERVER={0}; DATABASE={1}; UID={2}; PASSWORD={3};";
+                public static string connectionString =String.Format("SERVER={0}; DATABASE={1}; UID={2}; PASSWORD={3};"
+                                                                        ,server,database,uid,password);
+            }
+
+            public struct CsvPaths
+            {
+                public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\ExtendedTestData.csv";
             }
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using mcl = MovieClassLayer.MovieClasses;
 using csvD = MovieDataLayer.CSVData;
 using sqlD = MovieDataLayer.SQLData;
+using avSys = ApplicationVariables.ApplicationVariables.SystemSettings;
 
 namespace MovieBusinessLayer
 {
@@ -23,10 +24,18 @@ namespace MovieBusinessLayer
         }
 
         //--------------------------------------------------------------------- FILMS
-        public mcl.Films GetFilms(string csvPath)
+        public mcl.Films GetFilms(int accessPoint)
         {
-            sqlD dl1 = new sqlD();
-            return dl1.GetSQLData();
+            switch(accessPoint)
+            {
+                case avSys.DataAccessPoint.CSV:
+                    csvD dl = new csvD();
+                    return dl.GetCsvData(avSys.CsvPaths.MoviesCSV);
+                case avSys.DataAccessPoint.MySQL:
+                    sqlD dl1 = new sqlD();
+                    return dl1.GetSQLData();
+
+            }
             //-- TODO: raise error if needed
         }
 
