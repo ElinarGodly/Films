@@ -8,8 +8,9 @@ using mcl = MovieClassLayer.MovieClasses;
 namespace MovieDataLayer
 {
     public class CSVData : IDisposable
-    {
-        public void Dispose()
+    { //TODO refactor
+
+        public void Dispose() 
         {
             Dispose(true);
             //GC.SuppressFinalize(this);
@@ -27,15 +28,6 @@ namespace MovieDataLayer
         public mcl.Films GetCsvData(string CsvPath)
         {
             mcl.Films films = new mcl.Films();
-
-            //-- FilmID = csv[0];
-            //-- FilmName = csv[1];
-            //-- ImdbRating = csv[2];
-            //-- FilmYear = csv[7];
-            //-- DirectorID = csv[3];
-            //-- DirectorName = csv[4];
-            //-- ActorID = csv[5];
-            //-- ActorName = csv[6];
 
             using (CsvReader csv = new CsvReader(new StreamReader(CsvPath), true))
             {

@@ -13,8 +13,7 @@ namespace ApplicationVariables
 
         public struct CsvPaths
         {
-            public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Lari-NovusMovieProject\WebMovies\ExtendedTestData.csv"; //work pc
-            //public static string MoviesCSV = @"D:\Programming\Repos\Films\WebMovies\ExtendedTestData.csv"; //home pc
+            public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\ExtendedTestData.csv";
         }
 
         public struct SystemSettings
@@ -23,6 +22,15 @@ namespace ApplicationVariables
             {
                 public static bool UseCache = true;
                 public static string FilmCacheName = @"Cache_Film";
+            }
+
+            public struct SQLconnection
+            {
+                public static string server = "localhost";
+                public static string database = "filmdb";
+                public static string uid = "root";
+                public static string password = "";
+                public static string connectionString = "SERVER={0}; DATABASE={1}; UID={2}; PASSWORD={3};";
             }
         }
 
@@ -81,8 +89,11 @@ namespace ApplicationVariables
                 public static List<string> HeaderCells = new List<string>
                                     { "Film Name", "Director Name", "Actor Name", "IMDb Rating", "Film Year"};
                 public static string headerID = "ActorName";
+            }
 
-
+            public struct SQLqueries
+            {
+                public static string allFilms = "selectAllFilms";
             }
         }
 

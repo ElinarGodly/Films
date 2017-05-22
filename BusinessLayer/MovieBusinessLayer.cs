@@ -25,10 +25,8 @@ namespace MovieBusinessLayer
         //--------------------------------------------------------------------- FILMS
         public mcl.Films GetFilms(string csvPath)
         {
-            using (sqlD dl1 = new sqlD())
-            {
-                return dl1.Select();
-            }
+            sqlD dl1 = new sqlD();
+            return dl1.GetSQLData();
             //-- TODO: raise error if needed
         }
 

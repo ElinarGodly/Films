@@ -16,8 +16,6 @@ namespace WebMovies
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //var tmp = Page.Request.Params["__EVENTTARGET"];
-
             if (this.IsPostBack && isFilteredPageLoad())
             {
                 using (mbl bl1 = new mbl())
@@ -66,7 +64,7 @@ namespace WebMovies
             populateDropDownList(addBlankItem, ddl.ImdbRatings.ControlID, imdbRatings);
         }
 
-        private mcl.Films getFilms()
+        private mcl.Films getFilms()//-- TODO two methods one for CSV one for SQL
         {
             mcl.Films films = new mcl.Films();
 
@@ -134,7 +132,7 @@ namespace WebMovies
         #region Table Population
 
         //--------------------------------------------------------------------------Table Population
-
+        //-- TODO check if it works for more than 1 row. Maybe 
         private bool isSelectionComplete(List<mcl.SimplisticFilm> sFilms, List<mcl.Actor> actors, List<mcl.Director> directors)
         {
             return (sFilms.Count.Equals(1) && actors.Count.Equals(1) && directors.Count.Equals(1)) ? true : false;
@@ -156,14 +154,14 @@ namespace WebMovies
             table.Visible = true;
         }
 
-        private TableRow CreateFilmResultRow(mcl.Film film)
+        private TableRow CreateFilmResultRow(mcl.Film film) //-- TODO dont like the 0
         {
             TableRow row = new TableRow();
 
             List<string> linkValues = new List<string>{ avt.HyperLinkFilm, film.FilmID, film.FilmName };
             row.Cells.Add(CreateFilmInfoCell(avt.HyperLinkTemplate, linkValues));
 
-            linkValues = new List<string>{ avt.HyperLinkPerson, film.Directors[0].PersonID, film.Directors[0].PersonName};
+            linkValues = new List<string>{ avt.HyperLinkPerson, film.Actors[0].PersonName, film.Directors[0].PersonName};
             row.Cells.Add(CreateFilmInfoCell(avt.HyperLinkTemplate, linkValues));
 
             linkValues = new List<string> { avt.HyperLinkPerson, film.Actors[0].PersonID, film.Actors[0].PersonName };
