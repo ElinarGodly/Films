@@ -44,7 +44,7 @@ namespace MovieDataLayer
             server = "localhost";
             database = "filmdb";
             uid = "root";
-            password = "blacklila";
+            password = "";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
@@ -153,7 +153,7 @@ namespace MovieDataLayer
 
         public mcl.Films Select()
         {
-            string query = "CALL selectImdb();";
+            string query = "CALL selectAll();";
             mcl.Films films = new mcl.Films();
 
             //Open connection

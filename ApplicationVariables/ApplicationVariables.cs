@@ -13,8 +13,8 @@ namespace ApplicationVariables
 
         public struct CsvPaths
         {
-            //public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Lari-NovusMovieProject\WebMovies\ExtendedTestData.csv"; //work pc
-            public static string MoviesCSV = @"D:\Programming\Repos\Films\WebMovies\ExtendedTestData.csv"; //home pc
+            public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Lari-NovusMovieProject\WebMovies\ExtendedTestData.csv"; //work pc
+            //public static string MoviesCSV = @"D:\Programming\Repos\Films\WebMovies\ExtendedTestData.csv"; //home pc
         }
 
         public struct SystemSettings
