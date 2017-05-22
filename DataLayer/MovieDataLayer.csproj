@@ -61,6 +61,17 @@
       <Name>MovieClassLayer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL Scripts\allRecordsProcedure.sql" />
+    <Content Include="SQL Scripts\filmDB.sql" />
+    <Content Include="SQL Scripts\insertAll.sql" />
+    <Content Include="SQL Scripts\selectAll.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ExtendedTestData.csv" />
+    <None Include="SQL Scripts\filmdb.mwb" />
+    <Content Include="TestData.csv" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

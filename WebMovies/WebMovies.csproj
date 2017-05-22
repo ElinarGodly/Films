@@ -82,8 +82,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestData.csv" />
-    <Content Include="ExtendedTestData.csv" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
