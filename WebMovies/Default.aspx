@@ -31,9 +31,12 @@
             <label for="DropDownListImdbRatings" id="lblImdbRatingsDdl" runat="server"></label>
             <asp:DropDownList ID="DropDownListImdbRatings" runat="server" AutoPostBack="true"></asp:DropDownList>
         </div>
-        <asp:Button ID="btnUpdate" runat="server" Text="update" Visible="false" />
+        <asp:Button ID="btnUpdate" runat="server" Text="update" Visible="true" />
         <div>
         <asp:Button ID="btnReset" runat="server" Enabled="false" Text="reset" OnClick="btnReset_Click" UseSubmitBehavior="False"/>
+        </div>
+        <div>
+            <asp:CheckBox ID="cbDataPick" runat="server" Enabled="true" Text="SQL" Checked="false" />
         </div>
         <div>
             <asp:Table id="ResultsTable" border="1" runat="server" Visible="false"></asp:Table>

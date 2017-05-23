@@ -18,8 +18,8 @@ namespace WebMovies
         {
             if (this.IsPostBack && isFilteredPageLoad())
             {
-                using (mbl bl1 = new mbl())
-                {
+                mbl bl1 = new mbl();
+                
                     string filmID = (DropDownListFilms.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null : DropDownListFilms.SelectedValue);
                     string directorID = (DropDownListDirectors.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null : DropDownListDirectors.SelectedValue);
                     string actorID = (DropDownListActors.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null : DropDownListActors.SelectedValue);
@@ -29,7 +29,7 @@ namespace WebMovies
                         DropDownListImdbRatings.SelectedValue);
 
                     populateDropDownsWithFilteredData(filmID, directorID, actorID, filmYear, imdbRating);
-                }
+                
             }
             else
             {
@@ -74,11 +74,15 @@ namespace WebMovies
             }
             else
             {
-                using (mbl bl1 = new mbl())
-                {
+                mbl bl1 = new mbl(); 
+                CheckBox cb = Page.FindControl(av.SystemValues.CheckBoxes.DataPickSQL) as CheckBox;
+
+                if(cb.Checked.Equals(false))
                     films = bl1.GetFilms(av.SystemSettings.DataAccessPoint.CSV);
-                    if (cache.UseCache) Cache[cache.FilmCacheName] = films;
-                }
+                else
+                    films = bl1.GetFilms(av.SystemSettings.DataAccessPoint.MySQL);
+                if (cache.UseCache) Cache[cache.FilmCacheName] = films;
+                   
             }
 
             return films;
@@ -86,43 +90,42 @@ namespace WebMovies
 
         private void populateDropDownsWithOriginalData()
         {
-            using (mbl bl1 = new mbl())
-            {
-                mcl.Films films = getFilms();
+            mbl bl1 = new mbl();
+            
+           mcl.Films films = getFilms();
 
-                List<mcl.Director> directors = bl1.GetDistinctDirectorsFromFilms(films);
-                List<mcl.Actor> actors = bl1.GetDistinctActorsFromFilms(films);
-                List<mcl.SimplisticFilm> sFilms = bl1.GetDistinctSimplisticFilmsFromFilms(films);
-                List<string> filmYears = bl1.GetDistinctFilmYearFromFilms(films);
-                List<string> imdbRatings = bl1.GetDistinctImdbRatingFromFilms(films);
+           List<mcl.Director> directors = bl1.GetDistinctDirectorsFromFilms(films);
+           List<mcl.Actor> actors = bl1.GetDistinctActorsFromFilms(films);
+           List<mcl.SimplisticFilm> sFilms = bl1.GetDistinctSimplisticFilmsFromFilms(films);
+           List<string> filmYears = bl1.GetDistinctFilmYearFromFilms(films);
+           List<string> imdbRatings = bl1.GetDistinctImdbRatingFromFilms(films);
                                 
-                populateDropDowns(ddl.UseBlankItem, sFilms, directors, actors, filmYears, imdbRatings);
-            }
+           populateDropDowns(ddl.UseBlankItem, sFilms, directors, actors, filmYears, imdbRatings);
+            
         }
 
         private void populateDropDownsWithFilteredData(string filmID, string directorID, string actorID, string filmYear
                                                                                                        , string imdbRating)
         {
             mcl.Films films = getFilms();
-            using (mbl bl1 = new mbl())
+            mbl bl1 = new mbl();
+            
+            mcl.Films tmp = bl1.GetFilmsSubset(filmID, directorID, actorID, filmYear, imdbRating, films);
+
+            List<mcl.Actor> actors = (actorID == null) ? bl1.GetDistinctActorsFromFilms(tmp) : bl1.GetDistinctActor(tmp, actorID);
+            List<mcl.Director> directors = (directorID == null) ? bl1.GetDistinctDirectorsFromFilms(tmp) : bl1.GetDistinctDirector(tmp, directorID);
+            List<mcl.SimplisticFilm> sFilms = (filmID == null) ? bl1.GetDistinctSimplisticFilmsFromFilms(tmp) : tmp.GetDistinctSimplisticFilm(filmID);
+            List<string> filmYears = (filmYear == null) ? bl1.GetDistinctFilmYearFromFilms(tmp) :
+              tmp.GetDistinctFilmYear(filmYear);
+            List<string> imdbRatings = (imdbRating == null) ? bl1.GetDistinctImdbRatingFromFilms(tmp) :
+              tmp.GetDistinctImdbRating(imdbRating);
+
+            populateDropDowns(ddl.UseBlankItem, sFilms, directors, actors, filmYears, imdbRatings);
+
+            if (isSelectionComplete(sFilms, actors, directors))
             {
-                mcl.Films tmp = bl1.GetFilmsSubset(filmID, directorID, actorID, filmYear, imdbRating, films);
-
-                List<mcl.Actor> actors = (actorID == null) ? bl1.GetDistinctActorsFromFilms(tmp) : bl1.GetDistinctActor(tmp, actorID);
-                List<mcl.Director> directors = (directorID == null) ? bl1.GetDistinctDirectorsFromFilms(tmp) : bl1.GetDistinctDirector(tmp, directorID);
-                List<mcl.SimplisticFilm> sFilms = (filmID == null) ? bl1.GetDistinctSimplisticFilmsFromFilms(tmp) : tmp.GetDistinctSimplisticFilm(filmID);
-                List<string> filmYears = (filmYear == null) ? bl1.GetDistinctFilmYearFromFilms(tmp) :
-                  tmp.GetDistinctFilmYear(filmYear);
-                List<string> imdbRatings = (imdbRating == null) ? bl1.GetDistinctImdbRatingFromFilms(tmp) :
-                  tmp.GetDistinctImdbRating(imdbRating);
-
-                populateDropDowns(ddl.UseBlankItem, sFilms, directors, actors, filmYears, imdbRatings);
-
-                if (isSelectionComplete(sFilms, actors, directors))
-                {
-                    mcl.Film film = new mcl.Film(tmp.GetDistinctFilm(sFilms[0].FilmID), actors, directors);
-                    selectionComplete(film);
-                }
+                mcl.Film film = new mcl.Film(tmp.GetDistinctFilm(sFilms[0].FilmID), actors, directors);
+                selectionComplete(film);
             }
         }
         #region Table Population
@@ -208,7 +211,7 @@ namespace WebMovies
                 cell.Text = avt.HeaderCells[i];
                 header.Cells.Add(cell);
             }
-           
+            
             table.Rows.Add(header);
         }
 

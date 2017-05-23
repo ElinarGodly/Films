@@ -11,10 +11,7 @@ namespace ApplicationVariables
         public ApplicationVariables()
         { }
 
-        public struct CsvPaths
-        {
-            public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\ExtendedTestData.csv";
-        }
+        
 
         public struct SystemSettings
         {
@@ -30,19 +27,22 @@ namespace ApplicationVariables
                 public const int MySQL = 1;
             }
 
-            public struct SQLconnection
-            {
-                public static string server = "localhost";
-                public static string database = "filmdb";
-                public static string uid = "root";
-                public static string password = "";
-                public static string connectionString =String.Format("SERVER={0}; DATABASE={1}; UID={2}; PASSWORD={3};"
-                                                                        ,server,database,uid,password);
-            }
-
             public struct CsvPaths
             {
-                public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\ExtendedTestData.csv";
+                //--for work
+                //public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\ExtendedTestData.csv";
+                //--for home
+                public static string MoviesCSV = @"D:\Programming\Repos\Films\DataLayer\ExtendedTestData.csv";
+            }
+                
+            public struct SQLconnection
+            {
+                public static string server = @"localhost";
+                public static string database = @"filmdb";
+                public static string uid = @"root";
+                public static string password = @"";
+                public static string connectionString =String.Format(@"SERVER={0}; DATABASE={1}; UID={2}; PASSWORD={3};"
+                                                                        ,server,database,uid,password);
             }
         }
 
@@ -50,7 +50,12 @@ namespace ApplicationVariables
         {
             public struct Buttons
             {
-                public static string BtnResetID_ToLower = "btnreset";
+                public static string BtnResetID_ToLower = "@btnreset";
+            }
+
+            public struct CheckBoxes
+            {
+                public static string DataPickSQL = @"cbDataPick";
             }
 
             public struct DropDownLists
@@ -99,13 +104,13 @@ namespace ApplicationVariables
                 public static string HyperLinkPerson = @"name/nm";
                 public static string newWindow = "_blank";
                 public static List<string> HeaderCells = new List<string>
-                                    { "Film Name", "Director Name", "Actor Name", "IMDb Rating", "Film Year"};
-                public static string headerID = "ActorName";
+                                    { @"Film Name", @"Director Name", @"Actor Name", @"IMDb Rating", @"Film Year"};
+                public static string headerID = @"ActorName";
             }
 
             public struct SQLqueries
             {
-                public static string allFilms = "selectAllFilms";
+                public static string allFilms = @"selectAllFilms";
             }
         }
 
