@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using av = ApplicationVariables.ApplicationVariables;
-using avt = ApplicationVariables.ApplicationVariables.SystemValues.TableValues;
 using cache = ApplicationVariables.ApplicationVariables.SystemSettings.Cache;
-using ddl = ApplicationVariables.ApplicationVariables.SystemValues.DropDownLists;
+using avSV = ApplicationVariables.ApplicationVariables.SystemValues;
 using mbl = MovieBusinessLayer.MovieBusinessLayer;
 using mcl = MovieClassLayer.MovieClasses;
 
@@ -19,17 +18,17 @@ namespace WebMovies
             if (this.IsPostBack && isFilteredPageLoad())
             {
                 mbl bl1 = new mbl();
-                
-                    string filmID = (DropDownListFilms.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null : DropDownListFilms.SelectedValue);
-                    string directorID = (DropDownListDirectors.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null : DropDownListDirectors.SelectedValue);
-                    string actorID = (DropDownListActors.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null : DropDownListActors.SelectedValue);
-                    string filmYear = (DropDownListFilmYears.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null :
-                        DropDownListFilmYears.SelectedValue);
-                    string imdbRating = (DropDownListImdbRatings.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null :
-                        DropDownListImdbRatings.SelectedValue);
 
-                    populateDropDownsWithFilteredData(filmID, directorID, actorID, filmYear, imdbRating);
-                
+                string filmID = (DropDownListFilms.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null : DropDownListFilms.SelectedValue);
+                string directorID = (DropDownListDirectors.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null : DropDownListDirectors.SelectedValue);
+                string actorID = (DropDownListActors.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null : DropDownListActors.SelectedValue);
+                string filmYear = (DropDownListFilmYears.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null :
+                    DropDownListFilmYears.SelectedValue);
+                string imdbRating = (DropDownListImdbRatings.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null :
+                    DropDownListImdbRatings.SelectedValue);
+
+                populateDropDownsWithFilteredData(filmID, directorID, actorID, filmYear, imdbRating);
+
             }
             else
             {
@@ -38,7 +37,7 @@ namespace WebMovies
         }
 
         private bool isFilteredPageLoad()
-        { 
+        {
             return (Page.Request.Params["__EVENTTARGET"].ToLower() != av.SystemValues.Buttons.BtnResetID_ToLower);
         }
 
@@ -48,23 +47,23 @@ namespace WebMovies
                                                         , List<string> filmYears
                                                         , List<string> imdbRatings)
         {
-            populateDropDownList(addBlankItem, ddl.Films.ControlID
+            populateDropDownList(addBlankItem, avSV.DropDownLists.Films.ControlID
                                                         , sFilms
-                                                        , ddl.Films.DataTextField
-                                                        , ddl.Films.DataValueField);
-            populateDropDownList(addBlankItem, ddl.Directors.ControlID
+                                                        , avSV.DropDownLists.Films.DataTextField
+                                                        , avSV.DropDownLists.Films.DataValueField);
+            populateDropDownList(addBlankItem, avSV.DropDownLists.Directors.ControlID
                                                         , directors
-                                                        , ddl.Directors.DataTextField
-                                                        , ddl.Directors.DataValueField);
-            populateDropDownList(addBlankItem, ddl.Actors.ControlID
+                                                        , avSV.DropDownLists.Directors.DataTextField
+                                                        , avSV.DropDownLists.Directors.DataValueField);
+            populateDropDownList(addBlankItem, avSV.DropDownLists.Actors.ControlID
                                                         , actors
-                                                        , ddl.Actors.DataTextField
-                                                        , ddl.Actors.DataValueField);
-            populateDropDownList(addBlankItem, ddl.FilmYears.ControlID, filmYears);
-            populateDropDownList(addBlankItem, ddl.ImdbRatings.ControlID, imdbRatings);
+                                                        , avSV.DropDownLists.Actors.DataTextField
+                                                        , avSV.DropDownLists.Actors.DataValueField);
+            populateDropDownList(addBlankItem, avSV.DropDownLists.FilmYears.ControlID, filmYears);
+            populateDropDownList(addBlankItem, avSV.DropDownLists.ImdbRatings.ControlID, imdbRatings);
         }
 
-        private mcl.Films getFilms()//-- TODO two methods one for CSV one for SQL
+        private mcl.Films getFilms()
         {
             mcl.Films films = new mcl.Films();
 
@@ -74,15 +73,9 @@ namespace WebMovies
             }
             else
             {
-                mbl bl1 = new mbl(); 
-                CheckBox cb = Page.FindControl(av.SystemValues.CheckBoxes.DataPickSQL) as CheckBox;
-
-                if(cb.Checked.Equals(false))
-                    films = bl1.GetFilms(av.SystemSettings.DataAccessPoint.CSV);
-                else
-                    films = bl1.GetFilms(av.SystemSettings.DataAccessPoint.MySQL);
+                mbl bl1 = new mbl();
+                films = bl1.GetFilms(av.SystemSettings.DataAccessPoint.Current);
                 if (cache.UseCache) Cache[cache.FilmCacheName] = films;
-                   
             }
 
             return films;
@@ -91,17 +84,17 @@ namespace WebMovies
         private void populateDropDownsWithOriginalData()
         {
             mbl bl1 = new mbl();
-            
-           mcl.Films films = getFilms();
 
-           List<mcl.Director> directors = bl1.GetDistinctDirectorsFromFilms(films);
-           List<mcl.Actor> actors = bl1.GetDistinctActorsFromFilms(films);
-           List<mcl.SimplisticFilm> sFilms = bl1.GetDistinctSimplisticFilmsFromFilms(films);
-           List<string> filmYears = bl1.GetDistinctFilmYearFromFilms(films);
-           List<string> imdbRatings = bl1.GetDistinctImdbRatingFromFilms(films);
-                                
-           populateDropDowns(ddl.UseBlankItem, sFilms, directors, actors, filmYears, imdbRatings);
-            
+            mcl.Films films = getFilms();
+
+            List<mcl.Director> directors = bl1.GetDistinctDirectorsFromFilms(films);
+            List<mcl.Actor> actors = bl1.GetDistinctActorsFromFilms(films);
+            List<mcl.SimplisticFilm> sFilms = bl1.GetDistinctSimplisticFilmsFromFilms(films);
+            List<string> filmYears = bl1.GetDistinctFilmYearFromFilms(films);
+            List<string> imdbRatings = bl1.GetDistinctImdbRatingFromFilms(films);
+
+            populateDropDowns(avSV.DropDownLists.UseBlankItem, sFilms, directors, actors, filmYears, imdbRatings);
+
         }
 
         private void populateDropDownsWithFilteredData(string filmID, string directorID, string actorID, string filmYear
@@ -109,7 +102,7 @@ namespace WebMovies
         {
             mcl.Films films = getFilms();
             mbl bl1 = new mbl();
-            
+
             mcl.Films tmp = bl1.GetFilmsSubset(filmID, directorID, actorID, filmYear, imdbRating, films);
 
             List<mcl.Actor> actors = (actorID == null) ? bl1.GetDistinctActorsFromFilms(tmp) : bl1.GetDistinctActor(tmp, actorID);
@@ -120,7 +113,7 @@ namespace WebMovies
             List<string> imdbRatings = (imdbRating == null) ? bl1.GetDistinctImdbRatingFromFilms(tmp) :
               tmp.GetDistinctImdbRating(imdbRating);
 
-            populateDropDowns(ddl.UseBlankItem, sFilms, directors, actors, filmYears, imdbRatings);
+            populateDropDowns(avSV.DropDownLists.UseBlankItem, sFilms, directors, actors, filmYears, imdbRatings);
 
             if (isSelectionComplete(sFilms, actors, directors))
             {
@@ -140,31 +133,30 @@ namespace WebMovies
         private void selectionComplete(mcl.Film film)
         {
             CreateFilmsResultsTable(film);
-
             btnReset.Enabled = true;
         }
 
-        private void CreateFilmsResultsTable (mcl.Film film)
+        private void CreateFilmsResultsTable(mcl.Film film)
         {
             TableRow row = new TableRow();
-            Table table = (Table)Page.FindControl(avt.ResultsTable);
+            Table table = (Table)Page.FindControl(avSV.TableValues.ResultsTable);
             CreateFilmResultsTableHeader();
             table.Rows.Add(CreateFilmResultRow(film));
             table.Visible = true;
         }
 
-        private TableRow CreateFilmResultRow(mcl.Film film) //-- TODO dont like the 0
+        private TableRow CreateFilmResultRow(mcl.Film film)
         {
             TableRow row = new TableRow();
 
-            List<string> linkValues = new List<string>{ avt.HyperLinkFilm, film.FilmID, film.FilmName };
-            row.Cells.Add(CreateFilmInfoCell(avt.HyperLinkTemplate, linkValues));
+            List<string> linkValues = new List<string> { avSV.TableValues.HyperLinkFilm, film.FilmID, film.FilmName };
+            row.Cells.Add(CreateFilmInfoCell(avSV.TableValues.HyperLinkTemplate, linkValues));
 
-            linkValues = new List<string>{ avt.HyperLinkPerson, film.Actors[0].PersonName, film.Directors[0].PersonName};
-            row.Cells.Add(CreateFilmInfoCell(avt.HyperLinkTemplate, linkValues));
+            linkValues = new List<string> { avSV.TableValues.HyperLinkPerson, film.Actors[0].PersonName, film.Directors[0].PersonName };
+            row.Cells.Add(CreateFilmInfoCell(avSV.TableValues.HyperLinkTemplate, linkValues));
 
-            linkValues = new List<string> { avt.HyperLinkPerson, film.Actors[0].PersonID, film.Actors[0].PersonName };
-            row.Cells.Add(CreateFilmInfoCell(avt.HyperLinkTemplate, linkValues));
+            linkValues = new List<string> { avSV.TableValues.HyperLinkPerson, film.Actors[0].PersonID, film.Actors[0].PersonName };
+            row.Cells.Add(CreateFilmInfoCell(avSV.TableValues.HyperLinkTemplate, linkValues));
 
             row.Cells.Add(CreateFilmInfoCell(film.ImdbRating, null));
             row.Cells.Add(CreateFilmInfoCell(film.FilmYear, null));
@@ -175,43 +167,40 @@ namespace WebMovies
         private TableCell CreateFilmInfoCell(string filmText, List<string> linkValues)
         {
             TableCell cell = new TableCell();
-            
-            if(linkValues != null)
-            {
-                cell.Controls.Add(CreateHyperLink(avt.HyperLinkTemplate, linkValues));
-            }
-                
+
+            if (linkValues != null)
+                cell.Controls.Add(CreateHyperLink(avSV.TableValues.HyperLinkTemplate, linkValues));
             else
                 cell.Text = filmText;
-            
+
             return cell;
         }
 
         private HyperLink CreateHyperLink(string template, List<string> values)
         {
             var link = new HyperLink();
-            
+
             link.NavigateUrl = String.Format(template, values[0], values[1]);
             link.Text = values[2];
-            link.Target = avt.newWindow;
+            link.Target = avSV.TableValues.newWindow;
 
             return link;
         }
 
         private void CreateFilmResultsTableHeader()
         {
-            Table table = (Table)Page.FindControl(avt.ResultsTable);
+            Table table = (Table)Page.FindControl(avSV.TableValues.ResultsTable);
             TableHeaderRow header = new TableHeaderRow();
             header.Font.Bold = true;
 
-            for (int i = 0; i < avt.HeaderCells.Count; i++)
+            for (int i = 0; i < avSV.TableValues.HeaderCells.Count; i++)
             {
                 TableCell cell = new TableCell();
-                if (avt.headerID.Equals(avt.HeaderCells[i].Remove(5,1))) cell.CssClass = avt.headerID;
-                cell.Text = avt.HeaderCells[i];
+                if (avSV.TableValues.headerID.Equals(avSV.TableValues.HeaderCells[i].Remove(5, 1))) cell.CssClass = avSV.TableValues.headerID;
+                cell.Text = avSV.TableValues.HeaderCells[i];
                 header.Cells.Add(cell);
             }
-            
+
             table.Rows.Add(header);
         }
 
@@ -222,12 +211,12 @@ namespace WebMovies
         protected void btnReset_Click(object sender, EventArgs e)
         {
             populateDropDownsWithOriginalData();
-            Table table = (Table) Page.FindControl(avt.ResultsTable);
+            Table table = (Table)Page.FindControl(avSV.TableValues.ResultsTable);
             table.Visible = false;
             btnReset.Enabled = false;
-            for(int i =0; i< table.Rows.Count;i++)
+            for (int i = 0; i < table.Rows.Count; i++)
                 table.Rows.RemoveAt(i);
         }
-        
+
     }
 }

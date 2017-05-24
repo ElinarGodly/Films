@@ -25,14 +25,15 @@ namespace ApplicationVariables
             {
                 public const int CSV = 0;
                 public const int MySQL = 1;
+                public const int Current = MySQL;//the one picked in default.aspx.cs
             }
 
             public struct CsvPaths
             {
                 //--for work
-                //public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\ExtendedTestData.csv";
+                public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\ExtendedTestData.csv";
                 //--for home
-                public static string MoviesCSV = @"D:\Programming\Repos\Films\DataLayer\ExtendedTestData.csv";
+                //public static string MoviesCSV = @"D:\Programming\Repos\Films\DataLayer\ExtendedTestData.csv";
             }
                 
             public struct SQLconnection
@@ -112,6 +113,8 @@ namespace ApplicationVariables
             {
                 public static string allFilms = @"selectAllFilms";
             }
+
+            public static int firstItem = 0;
         }
 
         public struct DataIDs

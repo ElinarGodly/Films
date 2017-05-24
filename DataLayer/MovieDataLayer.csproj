@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ExtendedTestData.csv" />
+    <None Include="newTestData.csv" />
     <None Include="SQL Scripts\filmdb.mwb" />
     <Content Include="TestData.csv" />
   </ItemGroup>
