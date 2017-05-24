@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Film Data Filtering</title>
-    <link rel="stylesheet" type="text/css" href="stylesheet1.css" />
+    <link rel="stylesheet" type="text/css" href="filmDBstyles.css" />
 </head>
 
 <body>
@@ -31,9 +31,12 @@
             <label for="DropDownListImdbRatings" id="lblImdbRatingsDdl" runat="server"></label>
             <asp:DropDownList ID="DropDownListImdbRatings" runat="server" AutoPostBack="true"></asp:DropDownList>
         </div>
-        <asp:Button ID="btnUpdate" runat="server" Text="update" Visible="false" />
+        <asp:Button ID="btnUpdate" runat="server" Text="update" Visible="true" />
         <div>
         <asp:Button ID="btnReset" runat="server" Enabled="false" Text="reset" OnClick="btnReset_Click" UseSubmitBehavior="False"/>
+        </div>
+        <div>
+            <asp:CheckBox ID="cbDataPick" runat="server" Enabled="true" Text="SQL" Checked="false" />
         </div>
         <div>
             <asp:Table id="ResultsTable" border="1" runat="server" Visible="false"></asp:Table>

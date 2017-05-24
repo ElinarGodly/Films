@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
-    <Content Include="stylesheet1.css" />
+    <Content Include="filmDBstyles.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -3,31 +3,26 @@ using System.Collections.Generic;
 using mcl = MovieClassLayer.MovieClasses;
 using csvD = MovieDataLayer.CSVData;
 using sqlD = MovieDataLayer.SQLData;
+using avSys = ApplicationVariables.ApplicationVariables.SystemSettings;
 
 namespace MovieBusinessLayer
 {
-    public class MovieBusinessLayer : IDisposable
+    public class MovieBusinessLayer
     {
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // free managed resources
-            }
-            // free native resources if there are any.
-        }
-
         //--------------------------------------------------------------------- FILMS
-        public mcl.Films GetFilms(string csvPath)
+        public mcl.Films GetFilms(int accessPoint)
         {
-            using (sqlD dl1 = new sqlD())
+            switch(accessPoint)
             {
-                return dl1.Select();
+                case avSys.DataAccessPoint.CSV:
+                    csvD dl = new csvD();
+                    return dl.GetCsvData();
+                case avSys.DataAccessPoint.MySQL:
+                    sqlD dl1 = new sqlD();
+                    return dl1.GetSQLData();
+                default:
+                    dl = new csvD();
+                    return dl.GetCsvData();
             }
             //-- TODO: raise error if needed
         }

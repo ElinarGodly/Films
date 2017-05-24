@@ -4,40 +4,18 @@ using System.IO;
 using System.Linq;
 using csvMovies = ApplicationVariables.ApplicationVariables.DataIDs.Items_Movies;
 using mcl = MovieClassLayer.MovieClasses;
+using CsvPath = ApplicationVariables.ApplicationVariables.SystemSettings.CsvPaths;
 
 namespace MovieDataLayer
 {
-    public class CSVData : IDisposable
+    public class CSVData
     {
-        public void Dispose()
-        {
-            Dispose(true);
-            //GC.SuppressFinalize(this);
-        }
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                // free managed resources
-            }
-            // free native resources if there are any.
-        }
 
-
-        public mcl.Films GetCsvData(string CsvPath)
+        public mcl.Films GetCsvData()
         {
             mcl.Films films = new mcl.Films();
 
-            //-- FilmID = csv[0];
-            //-- FilmName = csv[1];
-            //-- ImdbRating = csv[2];
-            //-- FilmYear = csv[7];
-            //-- DirectorID = csv[3];
-            //-- DirectorName = csv[4];
-            //-- ActorID = csv[5];
-            //-- ActorName = csv[6];
-
-            using (CsvReader csv = new CsvReader(new StreamReader(CsvPath), true))
+            using (CsvReader csv = new CsvReader(new StreamReader(CsvPath.MoviesCSV), true))
             {
                 int fieldCount = csv.FieldCount;
 
@@ -99,5 +77,4 @@ namespace MovieDataLayer
             return film;
         }
     }
-
 }
