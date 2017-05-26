@@ -71,6 +71,7 @@
     <Content Include="ExtendedTestData.csv" />
     <None Include="newTestData.csv" />
     <None Include="SQL Scripts\filmdb.mwb" />
+    <Content Include="SQL Scripts\updateAll.sql" />
     <Content Include="TestData.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
