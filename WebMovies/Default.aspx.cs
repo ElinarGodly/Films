@@ -218,5 +218,11 @@ namespace WebMovies
                 table.Rows.RemoveAt(i);
         }
 
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            mbl bl = new mbl();
+            List<string> inputData = new List<string>();
+            bl.UpdateFilmInDatabase(inputData);
+        }
     }
 }

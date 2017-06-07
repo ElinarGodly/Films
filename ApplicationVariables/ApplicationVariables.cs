@@ -39,7 +39,7 @@ namespace ApplicationVariables
             public struct SQLconnection
             {
                 public static string server = @"localhost";
-                public static string database = @"filmdb";
+                public static string database = @"filmdbtesting";
                 public static string uid = @"root";
                 public static string password = @"";
                 public static string connectionString =String.Format(@"SERVER={0}; DATABASE={1}; UID={2}; PASSWORD={3};"
@@ -111,7 +111,9 @@ namespace ApplicationVariables
 
             public struct SQLqueries
             {
-                public static string allFilms = @"selectAllFilms";
+                public static string selectFilms = @"selectAllFilms";
+                public static string updateFilms = @"filmdbtesting.updateCreateFilmRecord"; //-- filmdbtesting.updateCreateFilmRecord
+                public static string createFilms = @"updateCreateFilmRecord";
             }
 
             public static int firstItem = 0;

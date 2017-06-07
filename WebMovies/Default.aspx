@@ -32,7 +32,7 @@
                 <asp:DropDownList ID="DropDownListImdbRatings" runat="server" AutoPostBack="true"></asp:DropDownList>
             </div>
             <div>
-                <asp:Button ID="btnUpdate" runat="server" Text="update" Visible="true" />
+                <asp:Button ID="btnUpdate" runat="server" Text="update" Visible="true" OnClick="btnUpdate_Click" UseSubmitBehavior="false"/>
                 <asp:Button ID="btnReset" runat="server" Enabled="false" Text="reset" OnClick="btnReset_Click" UseSubmitBehavior="False" />
             </div>
             <div>

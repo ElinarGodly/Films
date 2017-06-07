@@ -63,7 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="SQL Scripts\allRecordsProcedure.sql" />
+    <Content Include="SQL Scripts\deleteSelectedRecord.sql" />
     <Content Include="SQL Scripts\filmDB.sql" />
+    <Content Include="SQL Scripts\filmdbtesting.sql" />
     <Content Include="SQL Scripts\insertAll.sql" />
     <Content Include="SQL Scripts\selectAll.sql" />
   </ItemGroup>
@@ -72,6 +74,9 @@
     <None Include="newTestData.csv" />
     <None Include="SQL Scripts\filmdb.mwb" />
     <Content Include="SQL Scripts\updateAll.sql" />
+    <Content Include="SQL Scripts\updateAllTest.sql" />
+    <Content Include="SQL Scripts\updateAllTest2.sql" />
+    <Content Include="SQL Scripts\updateCreateFilmRecord.sql" />
     <Content Include="TestData.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

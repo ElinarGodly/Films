@@ -4,7 +4,7 @@
 -- --------------------------------------------------------------------------------
 DELIMITER $$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `updateAllTest2`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateCreateFilmRecord`(
 IN 
 fImdb char(7),
 fName varchar(45),
