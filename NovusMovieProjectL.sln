@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationVariables", "App
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMovies", "WebMovies\WebMovies.csproj", "{1DF6E4A3-1A54-4BB4-B42E-36E9E65CDB0C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plans", "Plans", "{383177C9-5F91-4A0A-8848-9DBC6EA6A7DA}"
+	ProjectSection(SolutionItems) = preProject
+		Plans\PlanCreatePage.doc = Plans\PlanCreatePage.doc
+		Plans\Tasks.doc = Plans\Tasks.doc
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,26 +48,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://recordedimage.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ApplicationVariables\\ApplicationVariables.csproj
-		SccProjectName1 = ApplicationVariables
-		SccLocalPath1 = ApplicationVariables
-		SccProjectUniqueName2 = BusinessLayer\\MovieBusinessLayer.csproj
-		SccProjectName2 = BusinessLayer
-		SccLocalPath2 = BusinessLayer
-		SccProjectUniqueName3 = ClassLayer\\MovieClassLayer.csproj
-		SccProjectName3 = ClassLayer
-		SccLocalPath3 = ClassLayer
-		SccProjectUniqueName4 = DataLayer\\MovieDataLayer.csproj
-		SccProjectName4 = DataLayer
-		SccLocalPath4 = DataLayer
-		SccProjectUniqueName5 = WebMovies\\WebMovies.csproj
-		SccProjectName5 = WebMovies
-		SccLocalPath5 = WebMovies
 	EndGlobalSection
 EndGlobal

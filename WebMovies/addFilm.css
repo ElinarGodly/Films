@@ -1,0 +1,14 @@
+﻿body{
+    //background-color: cornflowerblue;
+    font-family: Arial;
+    font-size: 12px;
+}
+
+[id*='lbl_']{
+    display: inline-block;
+    text-align: right;
+    width: 100px;
+}
+[id*='tb_']{ 
+    width: 200px;
+}

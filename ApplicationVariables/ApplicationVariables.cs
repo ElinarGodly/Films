@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using avd = ApplicationVariables.ApplicationVariables.SystemSettings.SQLconnection;
 
 namespace ApplicationVariables
 {
@@ -39,7 +40,7 @@ namespace ApplicationVariables
             public struct SQLconnection
             {
                 public static string server = @"localhost";
-                public static string database = @"filmdbtesting";
+                public static string database = @"filmdb";
                 public static string uid = @"root";
                 public static string password = @"";
                 public static string connectionString =String.Format(@"SERVER={0}; DATABASE={1}; UID={2}; PASSWORD={3};"
@@ -111,9 +112,9 @@ namespace ApplicationVariables
 
             public struct SQLqueries
             {
-                public static string selectFilms = @"selectAllFilms";
-                public static string updateFilms = @"filmdbtesting.updateCreateFilmRecord"; //-- filmdbtesting.updateCreateFilmRecord
-                public static string createFilms = @"updateCreateFilmRecord";
+                public static string selectFilms = String.Format(@"{0}.selectAllFilms",avd.database);
+                public static string updateFilms = String.Format(@"{0}.updateCreateFilmRecord",avd.database);
+                public static string createFilms = String.Format(@"{0}.updateCreateFilmRecord", avd.database);
             }
 
             public static int firstItem = 0;

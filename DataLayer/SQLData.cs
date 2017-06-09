@@ -101,7 +101,7 @@ namespace MovieDataLayer
         {
             bool success = true;
 
-            inputData = new List<string>() {"0499540", "Avatar 2", "9.8", "0000116", "James Comeron", "0757855", "Zoe Saldana", "2009"};
+            //inputData = new List<string>() {"0499540", "Avatar 2", "9.8", "0000116", "James Comeron", "0757855", "Zoe Saldana", "2009"};
 
             MySqlConnection con = new MySqlConnection(String.Format(avCon.connectionString, avCon.server, avCon.database, avCon.uid, avCon.password));
             MySqlCommand cmd = new MySqlCommand(avQuery.updateFilms, con);
