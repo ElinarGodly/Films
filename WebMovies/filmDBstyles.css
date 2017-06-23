@@ -15,9 +15,15 @@ th,td{
 }
 [id*='DropDownList'] {
     width: 200px;
+    text-align: center;
 }
 
 .ActorName {
     background-color: red;
+}
+label{
+    display: inline-block;
+    text-align: right;
+    width: 50px;
 }
 

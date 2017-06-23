@@ -13,11 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationVariables", "App
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMovies", "WebMovies\WebMovies.csproj", "{1DF6E4A3-1A54-4BB4-B42E-36E9E65CDB0C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{109A5869-B7AA-40EF-8FD7-20744DC70C26}"
-	ProjectSection(SolutionItems) = preProject
-		Rotten Plan.doc = Rotten Plan.doc
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

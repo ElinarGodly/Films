@@ -64,11 +64,20 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="addFilm.aspx" />
+    <Content Include="addFilm.css" />
     <Content Include="Default.aspx" />
     <Content Include="filmDBstyles.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addFilm.aspx.cs">
+      <DependentUpon>addFilm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addFilm.aspx.designer.cs">
+      <DependentUpon>addFilm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
