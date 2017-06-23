@@ -26,15 +26,15 @@ namespace ApplicationVariables
             {
                 public const int CSV = 0;
                 public const int MySQL = 1;
-                public const int Current = MySQL;//the one picked in default.aspx.cs
+                public const int Current = CSV;//the one picked in default.aspx.cs
             }
 
             public struct CsvPaths
             {
                 //--for work
-                public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\ExtendedTestData.csv";
+                public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV files\ExtendedTestData.csv";
                 //--for home
-                //public static string MoviesCSV = @"D:\Programming\Repos\Films\DataLayer\ExtendedTestData.csv";
+                //public static string MoviesCSV = @"D:\Programming\Repos\Films\DataLayer\CSV files\ExtendedTestData.csv";
             }
                 
             public struct SQLconnection
