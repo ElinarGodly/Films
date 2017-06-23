@@ -12,7 +12,7 @@ namespace MovieBusinessLayer
         //--------------------------------------------------------------------- FILMS
         public mcl.Films GetFilms(int accessPoint)
         {
-            switch(accessPoint)
+            switch (accessPoint)
             {
                 case avSys.DataAccessPoint.CSV:
                     csvD dl = new csvD();
@@ -25,6 +25,12 @@ namespace MovieBusinessLayer
                     return dl.GetCsvData();
             }
             //-- TODO: raise error if needed
+        }
+
+        public bool UpdateFilmInDatabase(List<string> inputData)
+        {
+            sqlD dl = new sqlD();
+            return dl.UpdateFilmInDatabase(inputData);
         }
 
         public List<mcl.SimplisticFilm> GetDistinctSimplisticFilmsFromFilms(mcl.Films films)

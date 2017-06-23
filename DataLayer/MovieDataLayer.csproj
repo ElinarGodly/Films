@@ -63,14 +63,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="SQL Scripts\allRecordsProcedure.sql" />
+    <Content Include="SQL Scripts\deleteSelectedRecord.sql" />
     <Content Include="SQL Scripts\filmDB.sql" />
+    <Content Include="SQL Scripts\filmdbtesting.sql" />
     <Content Include="SQL Scripts\insertAll.sql" />
     <Content Include="SQL Scripts\selectAll.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ExtendedTestData.csv" />
+    <Content Include="CSV files\ExtendedTestData.csv" />
+    <None Include="CSV files\newTestData.csv" />
+    <None Include="CSV files\RottenExtendedTestData.csv" />
     <None Include="SQL Scripts\filmdb.mwb" />
-    <Content Include="TestData.csv" />
+    <Content Include="SQL Scripts\updateAll.sql" />
+    <Content Include="SQL Scripts\updateAllTest.sql" />
+    <Content Include="SQL Scripts\updateAllTest2.sql" />
+    <Content Include="SQL Scripts\updateCreateFilmRecord.sql" />
+    <Content Include="CSV files\TestData.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

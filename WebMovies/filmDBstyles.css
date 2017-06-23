@@ -18,6 +18,7 @@ th,td{
     
     margin-bottom: 20px;
     width: 200px;
+    text-align: center;
 }
 #btnReset{
     margin-left: 20px;
@@ -34,5 +35,10 @@ th,td{
 
 .ActorName {
     background-color: red;
+}
+label{
+    display: inline-block;
+    text-align: right;
+    width: 50px;
 }
 

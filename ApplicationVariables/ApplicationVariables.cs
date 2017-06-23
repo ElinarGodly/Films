@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using avd = ApplicationVariables.ApplicationVariables.SystemSettings.SQLconnection;
 
 namespace ApplicationVariables
 {
@@ -25,14 +26,15 @@ namespace ApplicationVariables
             {
                 public const int CSV = 0;
                 public const int MySQL = 1;
+                public const int Current = MySQL;//the one picked in default.aspx.cs
             }
 
             public struct CsvPaths
             {
                 //--for work
-                //public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\ExtendedTestData.csv";
+                public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\ExtendedTestData.csv";
                 //--for home
-                public static string MoviesCSV = @"D:\Programming\Repos\Films\DataLayer\ExtendedTestData.csv";
+                //public static string MoviesCSV = @"D:\Programming\Repos\Films\DataLayer\ExtendedTestData.csv";
             }
                 
             public struct SQLconnection
@@ -110,8 +112,12 @@ namespace ApplicationVariables
 
             public struct SQLqueries
             {
-                public static string allFilms = @"selectAllFilms";
+                public static string selectFilms = String.Format(@"{0}.selectAllFilms",avd.database);
+                public static string updateFilms = String.Format(@"{0}.updateCreateFilmRecord",avd.database);
+                public static string createFilms = String.Format(@"{0}.updateCreateFilmRecord", avd.database);
             }
+
+            public static int firstItem = 0;
         }
 
         public struct DataIDs
