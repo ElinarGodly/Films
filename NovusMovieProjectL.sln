@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieClassLayer", "ClassLayer\MovieClassLayer.csproj", "{7DD1E0FC-7C49-436C-A192-8208F588A1AF}"
 EndProject
@@ -12,6 +12,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationVariables", "ApplicationVariables\ApplicationVariables.csproj", "{A9E27A37-A9F9-4803-8190-2AFF0F737292}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMovies", "WebMovies\WebMovies.csproj", "{1DF6E4A3-1A54-4BB4-B42E-36E9E65CDB0C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{109A5869-B7AA-40EF-8FD7-20744DC70C26}"
+	ProjectSection(SolutionItems) = preProject
+		Rotten Plan.doc = Rotten Plan.doc
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,26 +47,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://recordedimage.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ApplicationVariables\\ApplicationVariables.csproj
-		SccProjectName1 = ApplicationVariables
-		SccLocalPath1 = ApplicationVariables
-		SccProjectUniqueName2 = BusinessLayer\\MovieBusinessLayer.csproj
-		SccProjectName2 = BusinessLayer
-		SccLocalPath2 = BusinessLayer
-		SccProjectUniqueName3 = ClassLayer\\MovieClassLayer.csproj
-		SccProjectName3 = ClassLayer
-		SccLocalPath3 = ClassLayer
-		SccProjectUniqueName4 = DataLayer\\MovieDataLayer.csproj
-		SccProjectName4 = DataLayer
-		SccLocalPath4 = DataLayer
-		SccProjectUniqueName5 = WebMovies\\WebMovies.csproj
-		SccProjectName5 = WebMovies
-		SccLocalPath5 = WebMovies
 	EndGlobalSection
 EndGlobal
