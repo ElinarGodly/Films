@@ -31,15 +31,6 @@ namespace WebMovies {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblFilmsDdl;
         
         /// <summary>
-        /// DropDownListFilms control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListFilms;
-        
-        /// <summary>
         /// lblDirectorsDdl control.
         /// </summary>
         /// <remarks>
@@ -47,15 +38,6 @@ namespace WebMovies {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDirectorsDdl;
-        
-        /// <summary>
-        /// DropDownListDirectors control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListDirectors;
         
         /// <summary>
         /// lblActorsDdl control.
@@ -67,15 +49,6 @@ namespace WebMovies {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblActorsDdl;
         
         /// <summary>
-        /// DropDownListActors control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListActors;
-        
-        /// <summary>
         /// lblFilmYearsDdl control.
         /// </summary>
         /// <remarks>
@@ -85,15 +58,6 @@ namespace WebMovies {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblFilmYearsDdl;
         
         /// <summary>
-        /// DropDownListFilmYears control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListFilmYears;
-        
-        /// <summary>
         /// lblImdbRatingsDdl control.
         /// </summary>
         /// <remarks>
@@ -101,6 +65,42 @@ namespace WebMovies {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblImdbRatingsDdl;
+        
+        /// <summary>
+        /// DropDownListFilms control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListFilms;
+        
+        /// <summary>
+        /// DropDownListDirectors control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListDirectors;
+        
+        /// <summary>
+        /// DropDownListActors control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListActors;
+        
+        /// <summary>
+        /// DropDownListFilmYears control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListFilmYears;
         
         /// <summary>
         /// DropDownListImdbRatings control.

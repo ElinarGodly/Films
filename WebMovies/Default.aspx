@@ -12,30 +12,23 @@
     <form id="form1" runat="server">
     <div>
         <div>
-            <label for="DropDownListFilms" id="lblFilmsDdl" runat="server"></label>
+            <label class="lblDropDowns" for="DropDownListFilms" id="lblFilmsDdl" runat ="server"> Films </label>
+            <label class="lblDropDowns" for="DropDownListDirectors" id="lblDirectorsDdl" runat="server"> Directors </label>
+            <label class="lblDropDowns" for="DropDownListActors" id="lblActorsDdl" runat="server"> Actors </label>
+            <label class="lblDropDowns" for="DropDownListFilmYears" id="lblFilmYearsDdl" runat="server"> Years </label>
+            <label class="lblDropDowns" for="DropDownListImdbRatings" id="lblImdbRatingsDdl" runat="server"> Ratings </label>
+        </div>
+        <div>
             <asp:DropDownList ID="DropDownListFilms" runat="server" AutoPostBack="True"></asp:DropDownList>
-        </div>
-        <div>
-            <label for="DropDownListDirectors" id="lblDirectorsDdl" runat="server"></label>
             <asp:DropDownList ID="DropDownListDirectors" runat="server" AutoPostBack="True"></asp:DropDownList>
-        </div>
-        <div>
-            <label for="DropDownListActors" id="lblActorsDdl" runat="server"></label>
             <asp:DropDownList ID="DropDownListActors" runat="server" AutoPostBack="True"></asp:DropDownList>
-        </div>
-        <div>
-            <label for="DropDownListFilmYears" id="lblFilmYearsDdl" runat="server"></label>
             <asp:DropDownList ID="DropDownListFilmYears" runat="server" AutoPostBack="true"></asp:DropDownList>
-        </div>
-        <div>
-            <label for="DropDownListImdbRatings" id="lblImdbRatingsDdl" runat="server"></label>
             <asp:DropDownList ID="DropDownListImdbRatings" runat="server" AutoPostBack="true"></asp:DropDownList>
         </div>
-        <asp:Button ID="btnUpdate" runat="server" Text="update" Visible="true" />
+
         <div>
-        <asp:Button ID="btnReset" runat="server" Enabled="false" Text="reset" OnClick="btnReset_Click" UseSubmitBehavior="False"/>
-        </div>
-        <div>
+            <asp:Button ID="btnUpdate" runat="server" Text="update" Visible="true" />
+            <asp:Button ID="btnReset" runat="server" Enabled="false" Text="reset" OnClick="btnReset_Click" UseSubmitBehavior="False"/>
             <asp:CheckBox ID="cbDataPick" runat="server" Enabled="true" Text="SQL" Checked="false" />
         </div>
         <div>

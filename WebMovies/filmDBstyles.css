@@ -4,9 +4,10 @@ body{
     font-size: 12px;
 }
 table{ 
+    margin-top: 20px;
     border:hidden;
     height: 100px;
-    width: 1000px;
+    width: 1014px;
 }
 th,td{
     border: 2px solid;
@@ -14,7 +15,21 @@ th,td{
     text-align: center;
 }
 [id*='DropDownList'] {
+    
+    margin-bottom: 20px;
     width: 200px;
+}
+#btnReset{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.lblDropDowns{
+    font-size: 30px;
+    font-style: italic;
+    display: inline-block;
+    width: 200px;
+    text-align: center;
 }
 
 .ActorName {
