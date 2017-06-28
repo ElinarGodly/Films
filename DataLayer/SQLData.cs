@@ -1,11 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using avItems = ApplicationVariables.ApplicationVariables.DataIDs.Items_Movies;
 using avCon = ApplicationVariables.ApplicationVariables.SystemSettings.SQLconnection;
 using avQuery = ApplicationVariables.ApplicationVariables.SystemValues.SQLqueries;

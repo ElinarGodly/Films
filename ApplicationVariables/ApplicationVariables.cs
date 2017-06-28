@@ -26,17 +26,17 @@ namespace ApplicationVariables
             {
                 public const int CSV = 0;
                 public const int MySQL = 1;
-                public const int Current = MySQL;//the one picked in default.aspx.cs
+                public const int Current = CSV;//the one picked in default.aspx.cs
             }
 
             public struct CsvPaths
             {
                 //--for work
-                public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\ExtendedTestData.csv";
+                public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV\films.csv";
                 //--for home
-                //public static string MoviesCSV = @"D:\Programming\Repos\Films\DataLayer\ExtendedTestData.csv";
+                //public static string MoviesCSV = @"D:\Programming\Repos\Films\DataLayer\CSV\films.csv";
             }
-                
+
             public struct SQLconnection
             {
                 public static string server = @"localhost";
@@ -46,10 +46,33 @@ namespace ApplicationVariables
                 public static string connectionString =String.Format(@"SERVER={0}; DATABASE={1}; UID={2}; PASSWORD={3};"
                                                                         ,server,database,uid,password);
             }
+
+            public struct AWS
+            {
+                public static string AccessKey = @"AKIAIJ4Q4573BWXABETQ";
+                public static string SecretKey = @"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";
+            }
+
         }
 
         public struct SystemValues
         {
+            public struct S3_Storage
+            {
+                public struct LocalPaths
+                {
+                    public static string download = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV\Download\films.csv";
+                    public static string archive = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV\Archive\films-{0}.csv";
+                    public static string active = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV\films.csv";
+                }
+                public struct S3Paths
+                {
+                    public static string bucket = "films-csvs";
+                    public static string fileKey = "Other/ExtendedTestData.csv";
+                }
+                public static string timeFormat = "yyMMddHHmmss";
+            }
+
             public struct Buttons
             {
                 public static string BtnResetID_ToLower = "@btnreset";

@@ -152,7 +152,7 @@ namespace WebMovies
             List<string> linkValues = new List<string> { avSV.TableValues.HyperLinkFilm, film.FilmID, film.FilmName };
             row.Cells.Add(CreateFilmInfoCell(avSV.TableValues.HyperLinkTemplate, linkValues));
 
-            linkValues = new List<string> { avSV.TableValues.HyperLinkPerson, film.Actors[0].PersonName, film.Directors[0].PersonName };
+            linkValues = new List<string> { avSV.TableValues.HyperLinkPerson, film.Directors[0].PersonID, film.Directors[0].PersonName };
             row.Cells.Add(CreateFilmInfoCell(avSV.TableValues.HyperLinkTemplate, linkValues));
 
             linkValues = new List<string> { avSV.TableValues.HyperLinkPerson, film.Actors[0].PersonID, film.Actors[0].PersonName };
