@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Film Data Filtering</title>
-    <link rel="stylesheet" type="text/css" href="filmDBstyles.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/filmDBstyles.css" />
 </head>
 
 <body>

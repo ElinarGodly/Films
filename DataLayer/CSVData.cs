@@ -15,6 +15,8 @@ namespace MovieDataLayer
         {
             mcl.Films films = new mcl.Films();
 
+            AWS_S3.DownloadLatestFile();
+
             using (CsvReader csv = new CsvReader(new StreamReader(CsvPath.MoviesCSV), true))
             {
                 int fieldCount = csv.FieldCount;
