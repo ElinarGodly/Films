@@ -27,6 +27,7 @@
         </div>
 
         <div>
+            <a href="addFilm.aspx">Update</a>
             <asp:Button ID="btnUpdate" runat="server" Text="update" Visible="true" />
             <asp:Button ID="btnReset" runat="server" Enabled="false" Text="reset" OnClick="btnReset_Click" UseSubmitBehavior="False"/>s
         </div>

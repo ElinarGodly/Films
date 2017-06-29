@@ -51,8 +51,8 @@ namespace ApplicationVariables
 
             public struct AWS
             {
-                public static string AccessKey = @"AKIAIJ4Q4573BWXABETQ";
-                public static string SecretKey = @"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";
+                public static string AccessKey = @"a";
+                public static string SecretKey = @"s";
             }
 
         }
