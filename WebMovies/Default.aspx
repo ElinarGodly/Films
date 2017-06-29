@@ -28,8 +28,7 @@
 
         <div>
             <asp:Button ID="btnUpdate" runat="server" Text="update" Visible="true" />
-            <asp:Button ID="btnReset" runat="server" Enabled="false" Text="reset" OnClick="btnReset_Click" UseSubmitBehavior="False"/>
-            <asp:CheckBox ID="cbDataPick" runat="server" Enabled="true" Text="SQL" Checked="false" />
+            <asp:Button ID="btnReset" runat="server" Enabled="false" Text="reset" OnClick="btnReset_Click" UseSubmitBehavior="False"/>s
         </div>
         <div>
             <asp:Table id="ResultsTable" border="1" runat="server" Visible="false"></asp:Table>

@@ -32,15 +32,11 @@ namespace ApplicationVariables
             public struct CsvPaths
             {
                 //--for work
-<<<<<<< HEAD
                 //public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV files\ExtendedTestData.csv";
+                ////--for home
+                //public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV\films.csv";
                 //--for home
-                public static string MoviesCSV = @"D:\Programming\Repos\Films\DataLayer\CSV files\ExtendedTestData.csv";
-=======
-                public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV\films.csv";
-                //--for home
-                //public static string MoviesCSV = @"D:\Programming\Repos\Films\DataLayer\CSV\films.csv";
->>>>>>> atWork
+                public static string MoviesCSV = @"D:\Programming\Repos\Films\DataLayer\CSV\films.csv";
             }
 
             public struct SQLconnection
