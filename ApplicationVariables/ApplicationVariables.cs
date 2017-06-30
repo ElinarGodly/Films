@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using avd = ApplicationVariables.ApplicationVariables.SystemSettings.SQLconnection;
 
 namespace ApplicationVariables
@@ -12,7 +10,13 @@ namespace ApplicationVariables
         public ApplicationVariables()
         { }
 
-        
+        private static string solutionBaseDir(string relativePath)
+        {
+            var dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
+            dir = dir.Remove(dir.Length - 10);
+            dir = String.Concat(dir, relativePath);
+            return dir;
+        }
 
         public struct SystemSettings
         {
@@ -31,12 +35,8 @@ namespace ApplicationVariables
 
             public struct CsvPaths
             {
-                //--for work
-                //public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV files\ExtendedTestData.csv";
-                ////--for home
-                //public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV\films.csv";
-                //--for home
-                public static string MoviesCSV = @"D:\Programming\Repos\Films\DataLayer\CSV\films.csv";
+                public static string filmsCSV = solutionBaseDir(@"DataLayer\CSV\films.csv");
+                public static string credentialsAWS = solutionBaseDir(@"DataLayer\CSV\credentials.csv");
             }
 
             public struct SQLconnection
@@ -63,9 +63,9 @@ namespace ApplicationVariables
             {
                 public struct LocalPaths
                 {
-                    public static string download = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV\Download\films.csv";
-                    public static string archive = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV\Archive\films-{0}.csv";
-                    public static string active = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV\films.csv";
+                    public static string download = solutionBaseDir(@"DataLayer\CSV\Download\films.csv");
+                    public static string archive = solutionBaseDir(@"DataLayer\CSV\Archive\films-{0}.csv");
+                    public static string active = solutionBaseDir(@"DataLayer\CSV\films.csv");
                 }
                 public struct S3Paths
                 {

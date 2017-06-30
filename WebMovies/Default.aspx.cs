@@ -8,7 +8,6 @@ using avSV = ApplicationVariables.ApplicationVariables.SystemValues;
 using mbl = MovieBusinessLayer.MovieBusinessLayer;
 using mcl = MovieClassLayer.MovieClasses;
 
-
 namespace WebMovies
 {
     public partial class Default : SharedBase
@@ -221,8 +220,8 @@ namespace WebMovies
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             mbl bl = new mbl();
-            List<string> inputData = new List<string>();
-            bl.UpdateFilmInDatabase(inputData);
+            bl.UpdateCSVandRDB();
+            Cache[cache.FilmCacheName] = null;
         }
     }
 }

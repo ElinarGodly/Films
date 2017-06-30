@@ -28,8 +28,8 @@
 
         <div>
             <a href="addFilm.aspx">Update</a>
-            <asp:Button ID="btnUpdate" runat="server" Text="update" Visible="true" />
-            <asp:Button ID="btnReset" runat="server" Enabled="false" Text="reset" OnClick="btnReset_Click" UseSubmitBehavior="False"/>s
+            <asp:Button ID="btnUpdate" runat="server" Text="Update" Visible="true" OnClikc ="btnUpdate_Click"/>
+            <asp:Button ID="btnReset" runat="server" Enabled="false" Text="Reset" OnClick="btnReset_Click" UseSubmitBehavior="False"/>
         </div>
         <div>
             <asp:Table id="ResultsTable" border="1" runat="server" Visible="false"></asp:Table>

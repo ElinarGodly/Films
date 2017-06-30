@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using mcl = MovieClassLayer.MovieClasses;
-using csvD = MovieDataLayer.CSVData;
-using sqlD = MovieDataLayer.SQLData;
+using dl = MovieDataLayer;
 using avSys = ApplicationVariables.ApplicationVariables.SystemSettings;
 
 namespace MovieBusinessLayer
@@ -15,22 +14,28 @@ namespace MovieBusinessLayer
             switch (accessPoint)
             {
                 case avSys.DataAccessPoint.CSV:
-                    csvD dl = new csvD();
-                    return dl.GetCsvData();
+                    dl.CSVData dl1 = new dl.CSVData();
+                    return dl1.GetCsvData();
                 case avSys.DataAccessPoint.MySQL:
-                    sqlD dl1 = new sqlD();
-                    return dl1.GetSQLData();
+                    dl.SQLData dl2 = new dl.SQLData();
+                    return dl2.GetSQLData();
                 default:
-                    dl = new csvD();
-                    return dl.GetCsvData();
+                    dl1 = new dl.CSVData();
+                    return dl1.GetCsvData();
             }
             //-- TODO: raise error if needed
         }
 
         public bool UpdateFilmInDatabase(List<string> inputData)
         {
-            sqlD dl = new sqlD();
-            return dl.UpdateFilmInDatabase(inputData);
+            dl.SQLData dl = new dl.SQLData();
+            return dl.UpdateCreateOne(inputData);
+        }
+
+        public void UpdateCSVandRDB() //--TODO make it return message
+        {
+            dl.AWS_S3 dl1 = new dl.AWS_S3();
+            dl1.UpdateAllFromS3();
         }
 
         public List<mcl.SimplisticFilm> GetDistinctSimplisticFilmsFromFilms(mcl.Films films)

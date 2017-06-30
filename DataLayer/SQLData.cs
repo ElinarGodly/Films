@@ -15,6 +15,7 @@ namespace MovieDataLayer
 
         public SQLData() { }
 
+        #region ReadFromDB
         public mcl.Films GetSQLData()
         {
             mcl.Films films = new mcl.Films();
@@ -92,8 +93,10 @@ namespace MovieDataLayer
                 film.Directors.Add(director);
             }
         }
+        #endregion
 
-        public bool UpdateFilmInDatabase(List<string> inputData)
+        #region UpdateDB
+        public bool UpdateCreateOne(List<string> inputData)
         {
             bool success = true;
 
@@ -101,7 +104,7 @@ namespace MovieDataLayer
 
             MySqlConnection con = new MySqlConnection(String.Format(avCon.connectionString, avCon.server, avCon.database, avCon.uid, avCon.password));
             MySqlCommand cmd = new MySqlCommand(avQuery.updateFilms, con);
-            
+
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add(@"fImdb", MySqlDbType.VarChar, 7).Value = inputData[0];
@@ -118,6 +121,22 @@ namespace MovieDataLayer
             con.Close();
 
             return success;
+        }
+
+        public void UpdateDBFromS3(mcl.Films films)
+        {
+            foreach (var film in films)
+            {
+
+            }
+        }
+
+        private List<string> filmToString()
+        {
+            List<string> fields = new List<string>();
+
+
+            return fields;
         }
 
         public bool addFilmToDatabase(List<string> inputData)
@@ -152,5 +171,6 @@ namespace MovieDataLayer
 
         //    return success;
         //}
+#endregion
     }
 }
