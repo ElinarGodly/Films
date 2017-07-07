@@ -58,6 +58,7 @@
     <Compile Include="AWS_S3.cs" />
     <Compile Include="CSVData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared.cs" />
     <Compile Include="SQLData.cs" />
   </ItemGroup>
   <ItemGroup>

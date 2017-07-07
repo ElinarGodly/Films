@@ -48,13 +48,6 @@ namespace ApplicationVariables
                 public static string connectionString =String.Format(@"SERVER={0}; DATABASE={1}; UID={2}; PASSWORD={3};"
                                                                         ,server,database,uid,password);
             }
-
-            public struct AWS
-            {
-                public static string AccessKey = @"a";
-                public static string SecretKey = @"s";
-            }
-
         }
 
         public struct SystemValues
@@ -139,24 +132,27 @@ namespace ApplicationVariables
             {
                 public static string selectFilms = String.Format(@"{0}.selectAllFilms",avd.database);
                 public static string updateFilms = String.Format(@"{0}.updateCreateFilmRecord",avd.database);
-                public static string createFilms = String.Format(@"{0}.updateCreateFilmRecord", avd.database);
             }
-
-            public static int firstItem = 0;
         }
 
         public struct DataIDs
         {
-            public struct Items_Movies
+            public struct CSV_IDs
             {
-                public static int FilmID = 0;
-                public static int FilmName = 1;
-                public static int ImdbRating = 2;
-                public static int FilmYear = 7;
-                public static int DirectorID = 3;
-                public static int DirectorName = 4;
-                public static int ActorID = 5;
-                public static int ActorName = 6;
+                public static string FilmID = "Film ID";
+                public static string FilmName = "Film Name";
+                public static string ImdbRating = "IMDB Rating";
+                public static string FilmYear = "Year";
+                public static string DirectorID = "Director ID";
+                public static string DirectorName = "Director";
+                public static string ActorID = "Actor ID";
+                public static string ActorName = "Actor";
+            }
+
+            public struct AWS_Keys
+            {
+                public static string accessKey = "Access key ID";
+                public static string secretKey = "Secret access key";
             }
         }
     }

@@ -1,14 +1,13 @@
 ﻿using LumenWorks.Framework.IO.Csv;
-using System;
 using System.IO;
 using System.Linq;
-using csvMovies = ApplicationVariables.ApplicationVariables.DataIDs.Items_Movies;
+using csvMovies = ApplicationVariables.ApplicationVariables.DataIDs.CSV_IDs;
 using mcl = MovieClassLayer.MovieClasses;
 using CsvPath = ApplicationVariables.ApplicationVariables.SystemSettings.CsvPaths;
 
 namespace MovieDataLayer
 {
-    public class CSVData
+    public class CSVData:Shared
     {
 
         public mcl.Films GetCsvData()
@@ -19,22 +18,21 @@ namespace MovieDataLayer
             {
                 int fieldCount = csv.FieldCount;
 
-                string[] headers = csv.GetFieldHeaders();
+                //string[] headers = csv.GetFieldHeaders();
+
+                //headerDict(csv.GetFieldHeaders());
+
                 while (csv.ReadNextRecord())
                 {
                     if (films.Any(item => item.FilmID == csv[csvMovies.FilmID]))
                     {
                         mcl.Film tmpFilm = films.Find(item => item.FilmID == csv[csvMovies.FilmID]);
-                        if (tmpFilm.Directors.Any(item => item.PersonID == csv[csvMovies.DirectorID]))
-                        { }
-                        else
+                        if (tmpFilm.Directors.Any(item => item.PersonID == csv[csvMovies.DirectorID])!=true)
                         {
                             mcl.Director director = getDirectorFromCSV(csv);
                             tmpFilm.Directors.Add(director);
                         }
-                        if (tmpFilm.Actors.Any(item => item.PersonID == csv[csvMovies.ActorID]))
-                        { }
-                        else
+                        if (tmpFilm.Actors.Any(item => item.PersonID == csv[csvMovies.ActorID])!=true)
                         {
                             mcl.Actor actor = getActorFromCSV(csv);
                             tmpFilm.Actors.Add(actor);

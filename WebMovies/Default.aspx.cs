@@ -221,7 +221,9 @@ namespace WebMovies
         {
             mbl bl = new mbl();
             bl.UpdateCSVandRDB();
+            
             Cache[cache.FilmCacheName] = null;
+            populateDropDownsWithOriginalData();
         }
     }
 }

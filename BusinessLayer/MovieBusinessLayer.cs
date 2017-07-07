@@ -26,10 +26,10 @@ namespace MovieBusinessLayer
             //-- TODO: raise error if needed
         }
 
-        public bool UpdateFilmInDatabase(List<string> inputData)
+        public void UpdateFilmInDatabase(List<string> inputData)
         {
             dl.SQLData dl = new dl.SQLData();
-            return dl.UpdateCreateOne(inputData);
+            dl.UpdateCreateFilm(inputData);
         }
 
         public void UpdateCSVandRDB() //--TODO make it return message
