@@ -14,7 +14,7 @@ namespace MovieDataLayer
         {
             mcl.Films films = new mcl.Films();
             
-            using (CsvReader csv = new CsvReader(new StreamReader(CsvPath.filmsCSV), true))
+            using (CsvReader csv = new CsvReader(new StreamReader(CsvPath.MoviesCSV), true))
             {
                 int fieldCount = csv.FieldCount;
 
