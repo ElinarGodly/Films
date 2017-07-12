@@ -75,6 +75,12 @@
     <Content Include="CSS\addFilm.css" />
     <Content Include="Default.aspx" />
     <Content Include="CSS\filmDBstyles.css" />
+    <Resource Include="Icons\imdb.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\rotten.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

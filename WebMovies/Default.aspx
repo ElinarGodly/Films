@@ -16,7 +16,7 @@
             <label class="lblDropDowns" for="DropDownListDirectors" id="lblDirectorsDdl" runat="server"> Directors </label>
             <label class="lblDropDowns" for="DropDownListActors" id="lblActorsDdl" runat="server"> Actors </label>
             <label class="lblDropDowns" for="DropDownListFilmYears" id="lblFilmYearsDdl" runat="server"> Years </label>
-            <label class="lblDropDowns" for="DropDownListImdbRatings" id="lblImdbRatingsDdl" runat="server"> Ratings </label>
+            <label class="lblDropDowns" id="lblImdbRatingsDdl" runat="server"> Ratings </label>
         </div>
         <div>
             <asp:DropDownList ID="DropDownListFilms" runat="server" AutoPostBack="True"></asp:DropDownList>
@@ -24,6 +24,7 @@
             <asp:DropDownList ID="DropDownListActors" runat="server" AutoPostBack="True"></asp:DropDownList>
             <asp:DropDownList ID="DropDownListFilmYears" runat="server" AutoPostBack="true"></asp:DropDownList>
             <asp:DropDownList ID="DropDownListImdbRatings" runat="server" AutoPostBack="true"></asp:DropDownList>
+            <asp:DropDownList ID="DropDownListRottenRatings" runat="server" AutoPostBack="true"></asp:DropDownList>
         </div>
 
         <div>

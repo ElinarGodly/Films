@@ -63,7 +63,7 @@ namespace ApplicationVariables
                 public struct S3Paths
                 {
                     public static string bucket = "films-csvs";
-                    public static string fileKey = "Other/ExtendedTestData.csv";
+                    public static string fileKey = "Other/RottenExtendedTestData.csv";
                 }
                 public static string timeFormat = "yyMMddHHmmss";
             }
@@ -114,6 +114,12 @@ namespace ApplicationVariables
                 {
                     public static string ControlID = @"DropDownListImdbRatings";
                 }
+
+                public struct RottenRatings
+                {
+                    public static string ControlID = @"DropDownListRottenRatings";
+                }
+
             }
 
             public struct TableValues
@@ -124,7 +130,7 @@ namespace ApplicationVariables
                 public static string HyperLinkPerson = @"name/nm";
                 public static string newWindow = "_blank";
                 public static List<string> HeaderCells = new List<string>
-                                    { @"Film Name", @"Director Name", @"Actor Name", @"IMDb Rating", @"Film Year"};
+                                    { @"Film Name", @"Director Name", @"Actor Name", @"Ratings", @"Film Year"};
                 public static string headerID = @"ActorName";
             }
 
@@ -137,17 +143,46 @@ namespace ApplicationVariables
 
         public struct DataIDs
         {
+        //    public struct Item_IDs
+        //    {
+        //        public static int FilmID = 0;
+        //        public static int FilmName = 1;
+        //        public static int ImdbRating = 2;
+        //        public static int FilmYear = 7;
+        //        public static int DirectorID = 3;
+        //        public static int DirectorName = 4;
+        //        public static int ActorID = 5;
+        //        public static int ActorName = 6;
+        //    }
+
             public struct CSV_IDs
             {
-                public static int FilmID = 0;
-                public static int FilmName = 1;
-                public static int ImdbRating = 2;
-                public static int FilmYear = 7;
-                public static int DirectorID = 3;
-                public static int DirectorName = 4;
-                public static int ActorID = 5;
-                public static int ActorName = 6;
+                public static string FilmID = "Film ID";
+                public static string FilmName = "Film Name";
+                public static string ImdbRating = "IMDB Rating";
+                public static string RottenRating = "Rotten Rating";
+                public static string FilmYear = "Film Year";
+                public static string DirectorID = "Director ID";
+                public static string DirectorName = "Director";
+                public static string ActorID = "Actor ID";
+                public static string ActorName = "Actor";
             }
+
+
+            public struct SQL_IDs
+            {
+                public static string FilmID = "FilmImdbID";
+                public static string FilmName = "FilmName";
+                public static string ImdbRating = "ImdbRating";
+                public static string RottenRating = "RottenRating";
+                public static string FilmYear = "FilmYear";
+                public static string DirectorID = "DirectorImdbID";
+                public static string DirectorName = "DirectorName";
+                public static string ActorID = "ActorImdbID";
+                public static string ActorName = "ActorName";
+            }
+
+
 
             public struct AWS_Keys
             {

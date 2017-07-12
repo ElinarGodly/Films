@@ -7,6 +7,7 @@ using cache = ApplicationVariables.ApplicationVariables.SystemSettings.Cache;
 using avSV = ApplicationVariables.ApplicationVariables.SystemValues;
 using mbl = MovieBusinessLayer.MovieBusinessLayer;
 using mcl = MovieClassLayer.MovieClasses;
+using System.IO;
 
 namespace WebMovies
 {
@@ -25,8 +26,10 @@ namespace WebMovies
                     DropDownListFilmYears.SelectedValue);
                 string imdbRating = (DropDownListImdbRatings.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null :
                     DropDownListImdbRatings.SelectedValue);
+                string rottenRating = (DropDownListRottenRatings.SelectedValue == av.SystemValues.DropDownLists.DefaultValue ? null :
+                     DropDownListRottenRatings.SelectedValue);
 
-                populateDropDownsWithFilteredData(filmID, directorID, actorID, filmYear, imdbRating);
+                populateDropDownsWithFilteredData(filmID, directorID, actorID, filmYear, imdbRating, rottenRating);
 
             }
             else
@@ -44,7 +47,8 @@ namespace WebMovies
                                                         , List<mcl.Director> directors
                                                         , List<mcl.Actor> actors
                                                         , List<string> filmYears
-                                                        , List<string> imdbRatings)
+                                                        , List<string> imdbRatings
+                                                        , List<string> rottenRatings)
         {
             populateDropDownList(addBlankItem, avSV.DropDownLists.Films.ControlID
                                                         , sFilms
@@ -60,6 +64,7 @@ namespace WebMovies
                                                         , avSV.DropDownLists.Actors.DataValueField);
             populateDropDownList(addBlankItem, avSV.DropDownLists.FilmYears.ControlID, filmYears);
             populateDropDownList(addBlankItem, avSV.DropDownLists.ImdbRatings.ControlID, imdbRatings);
+            populateDropDownList(addBlankItem, avSV.DropDownLists.RottenRatings.ControlID, rottenRatings);
         }
 
         private mcl.Films getFilms()
@@ -91,18 +96,19 @@ namespace WebMovies
             List<mcl.SimplisticFilm> sFilms = bl1.GetDistinctSimplisticFilmsFromFilms(films);
             List<string> filmYears = bl1.GetDistinctFilmYearFromFilms(films);
             List<string> imdbRatings = bl1.GetDistinctImdbRatingFromFilms(films);
+            List<string> rottenRatings = bl1.GetDistinctRottenRatingFromFilms(films);
 
-            populateDropDowns(avSV.DropDownLists.UseBlankItem, sFilms, directors, actors, filmYears, imdbRatings);
+            populateDropDowns(avSV.DropDownLists.UseBlankItem, sFilms, directors, actors, filmYears, imdbRatings, rottenRatings);
 
         }
 
         private void populateDropDownsWithFilteredData(string filmID, string directorID, string actorID, string filmYear
-                                                                                                       , string imdbRating)
+                                                                                       , string imdbRating, string rottenRating)
         {
             mcl.Films films = getFilms();
             mbl bl1 = new mbl();
 
-            mcl.Films tmp = bl1.GetFilmsSubset(filmID, directorID, actorID, filmYear, imdbRating, films);
+            mcl.Films tmp = bl1.GetFilmsSubset(filmID, directorID, actorID, filmYear, imdbRating, rottenRating, films);
 
             List<mcl.Actor> actors = (actorID == null) ? bl1.GetDistinctActorsFromFilms(tmp) : bl1.GetDistinctActor(tmp, actorID);
             List<mcl.Director> directors = (directorID == null) ? bl1.GetDistinctDirectorsFromFilms(tmp) : bl1.GetDistinctDirector(tmp, directorID);
@@ -111,8 +117,10 @@ namespace WebMovies
               tmp.GetDistinctFilmYear(filmYear);
             List<string> imdbRatings = (imdbRating == null) ? bl1.GetDistinctImdbRatingFromFilms(tmp) :
               tmp.GetDistinctImdbRating(imdbRating);
+            List<string> rottenRatings = (rottenRating == null) ? bl1.GetDistinctRottenRatingFromFilms(tmp) :
+              tmp.GetDistinctRottenRating(rottenRating);
 
-            populateDropDowns(avSV.DropDownLists.UseBlankItem, sFilms, directors, actors, filmYears, imdbRatings);
+            populateDropDowns(avSV.DropDownLists.UseBlankItem, sFilms, directors, actors, filmYears, imdbRatings, rottenRatings);
 
             if (isSelectionComplete(sFilms, actors, directors))
             {
@@ -157,7 +165,7 @@ namespace WebMovies
             linkValues = new List<string> { avSV.TableValues.HyperLinkPerson, film.Actors[0].PersonID, film.Actors[0].PersonName };
             row.Cells.Add(CreateFilmInfoCell(avSV.TableValues.HyperLinkTemplate, linkValues));
 
-            row.Cells.Add(CreateFilmInfoCell(film.ImdbRating, null));
+            row.Cells.Add(CreateRatingCell(film.ImdbRating, film.RottenRating));
             row.Cells.Add(CreateFilmInfoCell(film.FilmYear, null));
 
             return row;
@@ -184,6 +192,30 @@ namespace WebMovies
             link.Target = avSV.TableValues.newWindow;
 
             return link;
+        }
+
+        private TableCell CreateRatingCell(string imdb, string rotten)
+        {
+            TableCell ratings = new TableCell();
+
+            Image imdbP = new Image();
+            imdbP.ImageUrl = @"Icons\imdb.png";
+            imdbP.ID = "imdbImage";
+            Image rottenP = new Image();
+            rottenP.ImageUrl = @"Icons\rotten.jpg";
+            rottenP.ID = "rottenImage";
+
+            Label imdbL = new Label();
+            imdbL.Text = imdb;
+            Label rottenL = new Label();
+            rottenL.Text = rotten;
+
+            ratings.Controls.Add(imdbP);
+            ratings.Controls.Add(imdbL);
+            ratings.Controls.Add(rottenP);
+            ratings.Controls.Add(rottenL);
+            
+            return ratings;
         }
 
         private void CreateFilmResultsTableHeader()

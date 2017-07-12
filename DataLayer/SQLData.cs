@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using avItems = ApplicationVariables.ApplicationVariables.DataIDs.CSV_IDs;
+using avItems = ApplicationVariables.ApplicationVariables.DataIDs.SQL_IDs;
 using avCon = ApplicationVariables.ApplicationVariables.SystemSettings.SQLconnection;
 using avQuery = ApplicationVariables.ApplicationVariables.SystemValues.SQLqueries;
 using mcl = MovieClassLayer.MovieClasses;
@@ -10,16 +10,17 @@ using System.Data;
 
 namespace MovieDataLayer
 {
-    public class SQLData
+    public class SQLData: Shared
     {//-- TODO refactor code
-
-        public SQLData() { }
-
+        private Dictionary<string, int> dict;
+        public SQLData(){ }
+        
         #region Read
         public mcl.Films GetSQLData()
         {
             mcl.Films films = new mcl.Films();
             DataTable table = getFilmsTable();
+            dict = headerDict(table.Columns);
             films = dataTableToFilms(table);
             return films;
         }
@@ -41,17 +42,17 @@ namespace MovieDataLayer
             mcl.Films films = new mcl.Films();
 
             DataRow[] dr = table.Select();
-
+            
             foreach (var row in dr)//TODO try with LINQ
             {
                 mcl.Film film = new mcl.Film();
-                if (films.Any(item => item.FilmID == row.ItemArray[avItems.FilmID].ToString()) == false)
+                if (films.Any(item => item.FilmID == row.ItemArray[dict[avItems.FilmID]].ToString()) == false)
                 {
                     films.Add(getFilm(row));
                 }
                 else
                 {
-                    film = films.Find(item => item.FilmID == row.ItemArray[avItems.FilmID].ToString());
+                    film = films.Find(item => item.FilmID == row.ItemArray[dict[avItems.FilmID]].ToString());
                     addActor(film, row);
                     addDirector(film, row);
                 }
@@ -59,14 +60,15 @@ namespace MovieDataLayer
             return films;
         }
 
+
         private mcl.Film getFilm(DataRow row)
         {
             mcl.Film film = new mcl.Film();
 
-            film.FilmID = row.ItemArray[avItems.FilmID].ToString();
-            film.FilmName = row.ItemArray[avItems.FilmName].ToString();
-            film.FilmYear = row.ItemArray[avItems.FilmYear].ToString();
-            film.ImdbRating = row.ItemArray[avItems.ImdbRating].ToString();
+            film.FilmID = row.ItemArray[dict[avItems.FilmID]].ToString();
+            film.FilmName = row.ItemArray[dict[avItems.FilmName]].ToString();
+            film.FilmYear = row.ItemArray[dict[avItems.FilmYear]].ToString();
+            film.ImdbRating = row.ItemArray[dict[avItems.ImdbRating]].ToString();
 
             addActor(film, row);
             addDirector(film, row);
@@ -76,20 +78,20 @@ namespace MovieDataLayer
 
         private void addActor(mcl.Film film, DataRow row)
         {
-            if (film.Actors.Any(item => item.PersonID == row.ItemArray[avItems.ActorID].ToString()) == false)
+            if (film.Actors.Any(item => item.PersonID == row.ItemArray[dict[avItems.ActorID]].ToString()) == false)
             {
-                mcl.Actor actor = new mcl.Actor(row.ItemArray[avItems.ActorID].ToString()
-                                                , row.ItemArray[avItems.ActorName].ToString());
+                mcl.Actor actor = new mcl.Actor(row.ItemArray[dict[avItems.ActorID]].ToString()
+                                                , row.ItemArray[dict[avItems.ActorName]].ToString());
                 film.Actors.Add(actor);
             }
         }
 
         private void addDirector(mcl.Film film, DataRow row)
         {
-            if (film.Directors.Any(item => item.PersonID == row.ItemArray[avItems.DirectorID].ToString()) == false)
+            if (film.Directors.Any(item => item.PersonID == row.ItemArray[dict[avItems.DirectorID]].ToString()) == false)
             {
-                mcl.Director director = new mcl.Director(row.ItemArray[avItems.DirectorID].ToString()
-                                                        , row.ItemArray[avItems.DirectorName].ToString());
+                mcl.Director director = new mcl.Director(row.ItemArray[dict[avItems.DirectorID]].ToString()
+                                                        , row.ItemArray[dict[avItems.DirectorName]].ToString());
                 film.Directors.Add(director);
             }
         }

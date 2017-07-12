@@ -43,9 +43,10 @@ namespace MovieBusinessLayer
             return (films == null) ? null : films.ToListSimplisticFilm();
         }
 
-        public mcl.Films GetFilmsSubset(string filmID, string directorID, string actorID, string filmYear,string imdbRating, mcl.Films films)
+        public mcl.Films GetFilmsSubset(string filmID, string directorID, string actorID, string filmYear,
+                                        string imdbRating,string rottenRating, mcl.Films films)
         {
-            return films.GetFilmsFilteredSubset(filmID, directorID, actorID, filmYear, imdbRating);
+            return films.GetFilmsFilteredSubset(filmID, directorID, actorID, filmYear, imdbRating, rottenRating);
         }
 
         //--------------------------------------------------------------------- DIRECTORS
@@ -95,5 +96,16 @@ namespace MovieBusinessLayer
             return films.GetDistinctImdbRating(imdbRating);
         }
 
+        //-----------------------------------------------------------------------RottenRating
+
+        public List<string> GetDistinctRottenRatingFromFilms(mcl.Films films)
+        {
+            return (films == null) ? null : films.ToListDistinctRottenRating();
+        }
+
+        public List<string> GetDistinctRottenRating(mcl.Films films, string rottenRating)
+        {
+            return films.GetDistinctRottenRating(rottenRating);
+        }
     }
 }

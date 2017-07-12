@@ -20,13 +20,14 @@ namespace MovieClassLayer
             //--------------------------------------------------------------------- METHODS
 
             //----------------------------------------------------------- FILMS
-            public Films GetFilmsFilteredSubset(string filmID, string directorID, string actorID, string filmYear, string imdbRating)
+            public Films GetFilmsFilteredSubset(string filmID, string directorID, string actorID, string filmYear, string imdbRating, string rottenRating)
             {
                 var tmpFilms = this.Where(f => f.FilmID == ((filmID == null) ? f.FilmID : filmID))
                                     .Where(f => f.Directors.Any(p => p.PersonID == ((directorID == null) ? p.PersonID : directorID)))
                                     .Where(f => f.Actors.Any(p => p.PersonID == ((actorID == null) ? p.PersonID : actorID )))
                                     .Where(f => f.FilmYear == ((filmYear==null) ? f.FilmYear : filmYear))
                                     .Where(f => f.ImdbRating == ((imdbRating==null) ? f.ImdbRating : imdbRating))
+                                    .Where(f => f.RottenRating == ((rottenRating==null) ? f.RottenRating : rottenRating))
                                     .OrderBy(f => f.FilmName)
                                     .ThenBy(f => f.FilmID)
                                     .ToList();
@@ -120,6 +121,22 @@ namespace MovieClassLayer
                                                                                            .ToList();
             }
 
+            //-----------------------------------------------------------------RottenRating
+            public List<string> ToListDistinctRottenRating()
+            {
+                return this.Select(p => p.RottenRating).GroupBy(p => p).Select(p => p.First())
+                                                                              .OrderByDescending(p => p)
+                                                                              .ToList();
+            }
+
+            public List<string> GetDistinctRottenRating(string rottenRating)
+            {
+                return this.Select(p => p.RottenRating).Where(p => p == rottenRating).GroupBy(p => p)
+                                                                                           .Select(p => p.First())
+                                                                                           .OrderByDescending(p => p)
+                                                                                           .ToList();
+            }
+
         }
 
         // ------------------------------------------------------------------------------------------------------------------- FILM
@@ -127,47 +144,52 @@ namespace MovieClassLayer
         {
             public string ImdbRating { get; set; }
             public string FilmYear { get; set; }
+            public string RottenRating { get; set; }
             public List<Director> Directors { get; set; }
             public List<Actor> Actors { get; set; }
 
             public Film()
             {
-                this.Directors = new List<Director>();
-                this.Actors = new List<Actor>();
+                Directors = new List<Director>();
+                Actors = new List<Actor>();
             }
 
             //------------------------------------------ CONSTRUCTORS
-            public Film(string filmID, string filmName, string imdbRating, string filmYear) : base(filmID, filmName)
+            public Film(string filmID, string filmName, string imdbRating, string filmYear, string rottenRating) : base(filmID, filmName)
             {
-                this.ImdbRating = imdbRating;
-                this.FilmYear = filmYear;
-                this.Directors = new List<Director>();
-                this.Actors = new List<Actor>();
+                ImdbRating = imdbRating;
+                FilmYear = filmYear;
+                RottenRating = rottenRating;
+                Directors = new List<Director>();
+                Actors = new List<Actor>();
             }
 
-            public Film(string filmID, string filmName, string imdbRating, List<Director> directors, List<Actor> actors, string filmYear) : base(filmID, filmName)
+            public Film(string filmID, string filmName, string imdbRating, List<Director> directors, List<Actor> actors, string filmYear, string rottenRating)
+                : base(filmID, filmName)
             {
-                this.ImdbRating = imdbRating;
-                this.FilmYear = filmYear;
-                this.Directors = directors;
-                this.Actors = actors;
+                ImdbRating = imdbRating;
+                FilmYear = filmYear;
+                RottenRating = rottenRating;
+                Directors = directors;
+                Actors = actors;
             }
 
             public Film(Film film, List<Actor> actors, List<Director> directors)
             {
-                this.FilmID = film.FilmID;
-                this.FilmName = film.FilmName;
-                this.ImdbRating = film.ImdbRating;
-                this.FilmYear = film.FilmYear;
-                this.Actors = actors;
-                this.Directors = directors;                     
+                FilmID = film.FilmID;
+                FilmName = film.FilmName;
+                ImdbRating = film.ImdbRating;
+                FilmYear = film.FilmYear;
+                RottenRating = film.RottenRating;
+                Actors = actors;
+                Directors = directors;                     
             }
 
             //------------------------------------------ METHODS
 
             public SimplisticFilm GetSimplisticFilm()
             {
-                return (SimplisticFilm)this;
+                return this;
             }
         }
 
@@ -181,8 +203,8 @@ namespace MovieClassLayer
             public SimplisticFilm() { }
             public SimplisticFilm(string filmID, string filmName)
             {
-                this.FilmID = filmID;
-                this.FilmName = filmName;
+                FilmID = filmID;
+                FilmName = filmName;
             }
 
             //------------------------------------------ METHODS
@@ -222,15 +244,15 @@ namespace MovieClassLayer
             public Person() { }
             public Person(string personID, string personName)
             {
-                this.PersonID = personID;
-                this.PersonName = personName;
+                PersonID = personID;
+                PersonName = personName;
             }
 
 
             //------------------------------------------ METHODS
             public Person GetPerson()
             {
-                return (Person)this;
+                return this;
             }
 
             public void Dispose()

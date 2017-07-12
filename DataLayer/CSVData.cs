@@ -4,6 +4,7 @@ using System.Linq;
 using csvMovies = ApplicationVariables.ApplicationVariables.DataIDs.CSV_IDs;
 using mcl = MovieClassLayer.MovieClasses;
 using CsvPath = ApplicationVariables.ApplicationVariables.SystemSettings.CsvPaths;
+using System.Collections.Generic;
 
 namespace MovieDataLayer
 {
@@ -17,7 +18,7 @@ namespace MovieDataLayer
             using (CsvReader csv = new CsvReader(new StreamReader(CsvPath.filmsCSV), true))
             {
                 int fieldCount = csv.FieldCount;
-
+                
                 while (csv.ReadNextRecord())
                 {
                     if (films.Any(item => item.FilmID == csv[csvMovies.FilmID]))
@@ -65,7 +66,8 @@ namespace MovieDataLayer
             mcl.Film film = new mcl.Film(csv[csvMovies.FilmID]
                                         , csv[csvMovies.FilmName]
                                         , csv[csvMovies.ImdbRating]
-                                        , csv[csvMovies.FilmYear]);
+                                        , csv[csvMovies.FilmYear]
+                                        , csv[csvMovies.RottenRating]);
             film.Directors.Add(director);
             film.Actors.Add(actor);
             return film;
