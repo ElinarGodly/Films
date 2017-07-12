@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using avItems = ApplicationVariables.ApplicationVariables.DataIDs.Items_Movies;
+using avItems = ApplicationVariables.ApplicationVariables.DataIDs.CSV_IDs;
 using avCon = ApplicationVariables.ApplicationVariables.SystemSettings.SQLconnection;
 using avQuery = ApplicationVariables.ApplicationVariables.SystemValues.SQLqueries;
 using mcl = MovieClassLayer.MovieClasses;
@@ -15,6 +15,7 @@ namespace MovieDataLayer
 
         public SQLData() { }
 
+        #region Read
         public mcl.Films GetSQLData()
         {
             mcl.Films films = new mcl.Films();
@@ -92,7 +93,9 @@ namespace MovieDataLayer
                 film.Directors.Add(director);
             }
         }
+        #endregion
 
+        #region Create/Update
         public bool UpdateFilmInDatabase(List<string> inputData)
         {
             bool success = true;
@@ -127,6 +130,11 @@ namespace MovieDataLayer
             return success;
         }
 
+        public void UpdateDBFromS3(mcl.Films films)
+        {
+
+        }
+
         //private bool isValid(List<string> inputData)
         //{
         //    bool success = true;
@@ -152,5 +160,6 @@ namespace MovieDataLayer
 
         //    return success;
         //}
+        #endregion
     }
 }

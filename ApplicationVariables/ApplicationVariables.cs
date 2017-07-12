@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using avd = ApplicationVariables.ApplicationVariables.SystemSettings.SQLconnection;
 
 namespace ApplicationVariables
@@ -12,7 +10,13 @@ namespace ApplicationVariables
         public ApplicationVariables()
         { }
 
-        
+        private static string solutionBaseDir(string relativePath)
+        {
+            var dir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
+            dir = dir.Remove(dir.Length - 10);
+            dir = String.Concat(dir, relativePath);
+            return dir;
+        }
 
         public struct SystemSettings
         {
@@ -31,12 +35,8 @@ namespace ApplicationVariables
 
             public struct CsvPaths
             {
-                //--for work
-                //public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV files\ExtendedTestData.csv";
-                ////--for home
-                //public static string MoviesCSV = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV\films.csv";
-                //--for home
-                public static string MoviesCSV = @"D:\Programming\Repos\Films\DataLayer\CSV\films.csv";
+                public static string filmsCSV = solutionBaseDir(@"DataLayer\CSV\films.csv");
+                public static string credentialsAWS = solutionBaseDir(@"DataLayer\CSV\credentials.csv");
             }
 
             public struct SQLconnection
@@ -45,8 +45,8 @@ namespace ApplicationVariables
                 public static string database = @"filmdb";
                 public static string uid = @"root";
                 public static string password = @"";
-                public static string connectionString =String.Format(@"SERVER={0}; DATABASE={1}; UID={2}; PASSWORD={3};"
-                                                                        ,server,database,uid,password);
+                public static string connectionString = String.Format(@"SERVER={0}; DATABASE={1}; UID={2}; PASSWORD={3};"
+                                                                        , server, database, uid, password);
             }
         }
 
@@ -56,9 +56,9 @@ namespace ApplicationVariables
             {
                 public struct LocalPaths
                 {
-                    public static string download = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV\Download\films.csv";
-                    public static string archive = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV\Archive\films-{0}.csv";
-                    public static string active = @"C:\Users\Novus\Desktop\Lari_C#\Project\Repos\Films\DataLayer\CSV\films.csv";
+                    public static string download = solutionBaseDir(@"DataLayer\CSV\Download\films.csv");
+                    public static string archive = solutionBaseDir(@"DataLayer\CSV\Archive\films-{0}.csv");
+                    public static string active = solutionBaseDir(@"DataLayer\CSV\films.csv");
                 }
                 public struct S3Paths
                 {
@@ -130,8 +130,8 @@ namespace ApplicationVariables
 
             public struct SQLqueries
             {
-                public static string selectFilms = String.Format(@"{0}.selectAllFilms",avd.database);
-                public static string updateFilms = String.Format(@"{0}.updateCreateFilmRecord",avd.database);
+                public static string selectFilms = String.Format(@"{0}.selectAllFilms", avd.database);
+                public static string updateFilms = String.Format(@"{0}.updateCreateFilmRecord", avd.database);
             }
         }
 
@@ -139,14 +139,14 @@ namespace ApplicationVariables
         {
             public struct CSV_IDs
             {
-                public static string FilmID = "Film ID";
-                public static string FilmName = "Film Name";
-                public static string ImdbRating = "IMDB Rating";
-                public static string FilmYear = "Year";
-                public static string DirectorID = "Director ID";
-                public static string DirectorName = "Director";
-                public static string ActorID = "Actor ID";
-                public static string ActorName = "Actor";
+                public static int FilmID = 0;
+                public static int FilmName = 1;
+                public static int ImdbRating = 2;
+                public static int FilmYear = 7;
+                public static int DirectorID = 3;
+                public static int DirectorName = 4;
+                public static int ActorID = 5;
+                public static int ActorName = 6;
             }
 
             public struct AWS_Keys
