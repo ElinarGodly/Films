@@ -96,70 +96,53 @@ namespace MovieDataLayer
         #endregion
 
         #region Create/Update
-        public bool UpdateFilmInDatabase(List<string> inputData)
+        public void UpdateCreateFilm(List<string> inputData)
         {
-            bool success = true;
-
-            //inputData = new List<string>() {"0499540", "Avatar 2", "9.8", "0000116", "James Comeron", "0757855", "Zoe Saldana", "2009"};
-
             MySqlConnection con = new MySqlConnection(String.Format(avCon.connectionString, avCon.server, avCon.database, avCon.uid, avCon.password));
             MySqlCommand cmd = new MySqlCommand(avQuery.updateFilms, con);
-            
 
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add(@"fImdb", MySqlDbType.VarChar, 7).Value = inputData[0];
-            cmd.Parameters.Add(@"fName", MySqlDbType.VarChar, 45).Value = inputData[1];
-            cmd.Parameters.Add(@"fRate", MySqlDbType.Decimal, 2).Value = Decimal.Parse(inputData[2]);
-            cmd.Parameters.Add(@"dImdb", MySqlDbType.VarChar, 7).Value = inputData[3];
-            cmd.Parameters.Add(@"dName", MySqlDbType.VarChar, 45).Value = inputData[4];
-            cmd.Parameters.Add(@"aImdb", MySqlDbType.VarChar, 7).Value = inputData[5];
-            cmd.Parameters.Add(@"aName", MySqlDbType.VarChar, 45).Value = inputData[6];
-            cmd.Parameters.Add(@"fYear", MySqlDbType.VarChar, 4).Value = inputData[7];
+
+            foreach (var item in inputData)
+                cmd.Parameters.Add(item);
 
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
-
-            return success;
-        }
-
-        public bool addFilmToDatabase(List<string> inputData)
-        {
-            bool success = true;
-
-            return success;
         }
 
         public void UpdateDBFromS3(mcl.Films films)
         {
-
+            for (int i = 0; i < films.Count; i++)
+            {
+                if (films[i].Directors.Count > 1)
+                {
+                    UpdateCreateFilm(filmToString(films[i]));
+                    films[i].Directors.RemoveAt(0);
+                    i--;
+                }
+                else if (films[i].Actors.Count > 1)
+                {
+                    UpdateCreateFilm(filmToString(films[i]));
+                    films[i].Actors.RemoveAt(0);
+                    i--;
+                }
+                else
+                    UpdateCreateFilm(filmToString(films[i]));
+            }
         }
 
-        //private bool isValid(List<string> inputData)
-        //{
-        //    bool success = true;
+        private List<string> filmToString(mcl.Film film)//TODO get order from shared/dynamic method
+        {
+            List<string> fields = new List<string>
+            {
+                film.FilmID, film.FilmName, film.ImdbRating, film.Directors[0].PersonID, film.Directors[0].PersonName,
+                film.Actors[0].PersonID, film.Actors[0].PersonName, film.FilmYear
+            };
 
-        //    if ((inputData[0].Length != 7) && (inputData[3].Length != 7)
-        //        && (inputData[5].Length != 7) && (inputData[7].Length !=4))
-        //        success = false;
+            return fields;
+        }
 
-        //    decimal rate = 0.0m;
-
-        //    if(decimal.TryParse(inputData[2],out rate)
-
-
-
-        //    //0 is imdbID = len 7
-        //    //1 is Film Name
-        //    //2 IMDB Rating = between 0.0 and 10.0
-        //    //3 Director ID = len 7
-        //    //4 Director
-        //    //5 Actor ID = len 7
-        //    //6 Actor
-        //    //7 Year = len 4
-
-        //    return success;
-        //}
         #endregion
     }
 }
